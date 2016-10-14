@@ -11,7 +11,7 @@ b) Create a class Order which implements a method CalculateCost which takes as i
 Create a static class "Utilities" and implement a method which takes two integers parameters and swaps them. Use ref. Create a second method which swaps generic types.
 
 ## Exercise 04
-Initialize a list containing some Students. Students have name and mark. Sort the list by students' mark in ascending order. Use the interface `System.IComparable<T>`
+Initialize a list containing some Students. Students have name and mark. Sort the list by students' mark in ascending order. Use the interface `System.IComparer<T>`
 
 ## Exercise 05
 Implement the following classes: Dog, Cat, Lion. All of them are animals (Animal). Animals are characterized by age, name and gender. Each animal makes a sound (use a virtual method in the Animal class). Create an array of different animals and print on the console their name, age and the corresponding sound each one makes.
