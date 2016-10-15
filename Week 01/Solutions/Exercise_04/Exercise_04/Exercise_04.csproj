@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CA619AB2-8D9F-4887-80BA-D33C35785D66}</ProjectGuid>
+    <ProjectGuid>{4D9E6E9F-6D38-42B6-BF60-F1C72F08F891}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InterfaceExample</RootNamespace>
-    <AssemblyName>InterfaceExample</AssemblyName>
+    <RootNamespace>Exercise_04</RootNamespace>
+    <AssemblyName>Exercise_04</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -10,19 +10,25 @@ namespace Exercise_02
     {
         public class Coffee
         {
+            //First declare the new enum type CoffeeType
             public enum CoffeeType
             {
                 Small = 100,
                 Normal = 150,
                 Double = 300
             }
+
+            //Then declare a property of type CoffeeType.
+            //Restrict set access to private.
             public CoffeeType Type { get; private set; }
             
+            //Constructor
             public Coffee(CoffeeType type)
             {
                 Type = type;
             }
 
+            //Just return a formated string
             public string PrintInfo()
             {
                 return $"{Type} coffee is {(int)Type} ml.";
@@ -30,13 +36,16 @@ namespace Exercise_02
         }
 
         public class Order {
+            //List containing items of type Coffee
             private List<Coffee> items = new List<Coffee>();
 
+            //Function to add items into list
             public void Add(Coffee coffee)
             {
                 items.Add(coffee);
             }
 
+            //Function to calculate the total cost of the order
             public double CalculateCost()
             {
                 double cost = 0;
@@ -45,13 +54,13 @@ namespace Exercise_02
                     switch(c.Type)
                     {
                         case Coffee.CoffeeType.Small:
-                            cost += 5;
+                            cost += 0.5;
                             break;
                         case Coffee.CoffeeType.Normal:
-                            cost += 10;
+                            cost += 1.5;
                             break;
                         case Coffee.CoffeeType.Double:
-                            cost += 15;
+                            cost += 2.5;
                             break;
                         default:
                             break;
@@ -65,10 +74,12 @@ namespace Exercise_02
         {
             Coffee c1 = new Coffee(Coffee.CoffeeType.Small);
             Console.WriteLine(c1.PrintInfo());
+
             Order order = new Order();
             order.Add(c1);
             order.Add(new Coffee(Coffee.CoffeeType.Double));
             Console.WriteLine(order.CalculateCost());
+
             Console.ReadKey();
         }
     }
