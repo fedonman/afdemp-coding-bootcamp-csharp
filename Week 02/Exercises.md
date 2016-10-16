@@ -1,5 +1,18 @@
 # C\# - Week 2
 
+## Exercise *Library*
+You have the following relations between entities:
++ There is a Library that has a collection of Books
++ Each Book has an Author
++ The Library is operated by a Librarian
++ The user can make request regarding authors and book availability only by asking the Librarian. No direct contact to the other entities should be attempted!
++ For all of the following classes create the getter and setter methods for interacting with their fields
+
+## Exercise *Subsequence*
+Write a  method that finds the longest subsequence of equal numbers in a given List<int> and returns the result as new List<int>. Write a program to test whether the method works correctly. Implement the method
+1. as a static method of a static class Utilities
+2. as an extension method of the List<int>
+
 ## Exercise *Fraction*
 Define a class Fraction, which contains information about the rational fraction (e.g. 1/4). Define the appropriate fields, properties and constructors. Also define a property of type *decimal* to return the decimal value of the fraction (e.g. 0.25). Define a static method Parse() to create a fraction from a string. Write a function to cancel the fraction. (e.g. 10/15 is cancelled to 2/3).
 
