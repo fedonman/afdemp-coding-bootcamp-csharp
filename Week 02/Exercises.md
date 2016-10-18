@@ -18,13 +18,13 @@ Write a  method that finds the longest subsequence of equal numbers in a given L
 
 
 ## Exercise *Fraction*
-Define a class Fraction, which contains information about the rational fraction (e.g. 1/4).  
-1. Define the appropriate fields, properties and constructors.  
-2. Override ToString() to print the Fraction (e.g. "1/4").  
-3. Define a static method Parse(string str) to create a Fraction from a string.  
-4. Define a property of type *decimal* to return the decimal value of the fraction (e.g. 0.25).  
-5. Implement IComparable interface to enable sorting of Fractions.  
-5. Write a function Cancel() to cancel the Fraction. (e.g. 10/15 is cancelled to 2/3).  
+1. Define a class Fraction, which contains information about the rational fraction (e.g. 1/4).  
+2. Define the appropriate fields, properties and constructors.  
+3. Override ToString() to print the Fraction (e.g. "1/4").  
+4. Define a static method Parse(string str) to create a Fraction from a string.  
+5. Define a property of type *decimal* to return the decimal value of the fraction (e.g. 0.25).  
+6. Implement IComparable interface to enable sorting of Fractions.  
+7. Write a function Cancel() to cancel the Fraction. (e.g. 10/15 is cancelled to 2/3).  
 
 
 ## Exercise *Mobile*
