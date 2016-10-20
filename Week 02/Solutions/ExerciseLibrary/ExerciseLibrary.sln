@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExerciseLibrary", "ExerciseLibrary\ExerciseLibrary.csproj", "{ECF013F2-C849-42BF-955D-6AC8564CBBFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECF013F2-C849-42BF-955D-6AC8564CBBFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECF013F2-C849-42BF-955D-6AC8564CBBFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECF013F2-C849-42BF-955D-6AC8564CBBFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECF013F2-C849-42BF-955D-6AC8564CBBFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
