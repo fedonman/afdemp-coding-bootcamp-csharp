@@ -1,5 +1,4 @@
-
-# C\# - Week 2
+# Week 2 - C\#
 
 
 ## Exercise *Library*
@@ -9,7 +8,7 @@ You have the following relations between entities:
 + The Library is operated by a Librarian
 + The User can make request regarding Authors and Book availability only by asking the Librarian. No direct contact to the other entities should be attempted!
 1. Create all the necessary classes as much independent from each other as possible (loose coupling).
-2. The rest of the logic should be in class Program. In main() we want to call a static function `Program.AsksForBook(user, librarian, book)` which prints whether the user can access the book if the book exists in the library. 
+2. The rest of the logic should be in class Program. In main() we want to call a static function `Program.AsksForBook(user, librarian, book)` which prints whether the user can access the book if the book exists in the library.
 
 
 ## Exercise *Subsequence*
