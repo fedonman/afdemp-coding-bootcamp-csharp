@@ -76,16 +76,16 @@ namespace Demo8
         }
         public void Throw(int Number)
         {
-            Throw(Number);
+            base.Throw(Number);
             if (!this.Success)
-                Throw(SecondChoice);
+                base.Throw(SecondChoice);
         }
 
         public void Throw(string Number)
         {
-            Throw(Number);
+            base.Throw(Number);
             if (!this.Success)
-                Throw(SecondChoice);
+                base.Throw(SecondChoice);
         }
 
     }

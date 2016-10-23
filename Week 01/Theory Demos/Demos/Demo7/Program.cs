@@ -37,14 +37,17 @@ namespace Demo7
 
             Solutions = new List<List<Schedule>>();
             CheckRoute("", Start, Destination, 3);
+
             Console.ReadKey();
+            //CountingWithRecursion(0);
+            //Console.ReadKey();
         }
 
         public static void CheckRoute(String CurrentRoute, String CurrentlyAt, String Destination, int stops)
         {
             Debug.WriteLine(stops);
-            //if (stops == 0)
-            //   return;
+            if (stops == 0)
+               return;
 
             for (int i = 0; i < Schedules.Count; i++)
             {
@@ -64,5 +67,25 @@ namespace Demo7
 
             return;
         }
+
+        public static void CountingWithIteration()
+        {
+            for (int i = 0; i < 10; i++)
+                Console.WriteLine(i);
+        }
+
+        public static void CountingWithRecursion(int i)
+        {
+            Console.WriteLine(i);
+            if (i < 9)
+            {
+                i = i + 1;
+                CountingWithRecursion(i);
+                return;
+            }
+            else
+                return;
+        }
     }
+
 }
