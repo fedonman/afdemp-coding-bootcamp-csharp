@@ -1,4 +1,4 @@
-# Week 3 - SQL / ADO.NET / Entity Framework
+# Week 03 - SQL / ADO.NET / Entity Framework
 
 ## Exercise *Simple SQL Queries*
 Use the Northwind Demo Database. Write the queries for the following:  
