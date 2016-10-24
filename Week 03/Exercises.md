@@ -12,10 +12,11 @@ Use the Northwind Demo Database. Write the queries for the following:
 ## Exercise *Library ER-Diagram*
 Remember the exercise you did with the Library.  
 We will work with just the Library and the Books.  
-Remember:  
-+ One Library  
-+ Lots of Books  
-+ Books have Authors, title, and ISBN (a unique id)  
+Remember:
+
++ One Library
++ Lots of Books
++ Books have Authors, title, and ISBN (a unique id)
 
 1. Define all the entities  
 2. Define all the attributes of the entities  
