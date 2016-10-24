@@ -1,4 +1,3 @@
-
 # Week 03 - SQL / ADO.NET / Entity Framework
 
 ## Exercise *Simple SQL Queries*
@@ -20,10 +19,10 @@ Remember:
 1. Define all the entities  
 2. Define all the attributes of the entities  
 3. Define all the relationships between the entities  
-4. Go to [https://www.draw.io/](https://www.draw.io/) and draw the ER-Diagram of the above.
-5. Add the User who rents Books and the Librarian who manages the Library and authorizes the renting.
-6. Create database and tables in SQL according to the ER-Diagram created.
-7. Add demo data to the tables.
+4. Go to [https://www.draw.io/](https://www.draw.io/) and draw the ER-Diagram of the above.  
+5. Add the User who rents Books and the Librarian who manages the Library and authorizes the renting.  
+6. Create database and tables in SQL according to the ER-Diagram created.  
+7. Add demo data to the tables.  
 
 
 ## Exercise *Your project's ER-Diagram*
