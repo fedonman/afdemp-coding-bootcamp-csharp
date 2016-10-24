@@ -16,6 +16,7 @@ Remember:
 + One Library  
 + Lots of Books  
 + Books have Authors, title, and ISBN (a unique id)  
+
 1. Define all the entities  
 2. Define all the attributes of the entities  
 3. Define all the relationships between the entities  
