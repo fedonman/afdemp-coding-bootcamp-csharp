@@ -75,19 +75,19 @@ Using the Northwind Database, write the queries for the following:
 
 
 ## Exercise *Advances SQL queries*
-1. What were our total revenues in 1997 (Result must be 617.085,27)
-2. What is the total amount each customer has payed us so far (Hint: QUICK-Stop has payed us 110.277,32)
-3. Find the 10 top selling products (Hint: Top selling product is "Côte de Blaye")
+1. What were our total revenues in 1997 *(Result must be 617.085,27)*
+2. What is the total amount each customer has payed us so far *(Hint: QUICK-Stop has payed us 110.277,32)*
+3. Find the 10 top selling products *(Hint: Top selling product is "Côte de Blaye")*
 4. Create a view with total revenues per customer 
-4. Which UK Customers have payed us more than 1000 dollars (6 rows)
-5. How much has each customer payed as in total and how much in 1997
-    (We want one result set with the following columns:
+4. Which UK Customers have payed us more than 1000 dollars *(6 rows)*
+5. How much has each customer payed in total and how much in 1997.
+    We want one result set with the following columns:
     * CustomerID
     * CompanyName
     * Country
     * Customer's total from all orders
     * Customer's total from 1997 orders
-     You can try this with views, subqueries or temporary tables. 
-     Try using [Order Subtotals] view that already exists in database.
-     )
-     (91 rows, Customer "Centro comercial Moctezuma" has 100,80 total revenues and zero (0) revenues in 1997 )
+    
+    You can try this with views, subqueries or temporary tables.
+    Try using **[Order Subtotals]** view that already exists in database.
+    *(91 rows, Customer "Centro comercial Moctezuma" has 100,80 total revenues and zero (0) revenues in 1997 )*
