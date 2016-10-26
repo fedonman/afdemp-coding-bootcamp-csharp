@@ -23,7 +23,7 @@ if exists(select * from INFORMATION_SCHEMA.VIEWS where TABLE_NAME = [Total Reven
 	drop view [Total Revenues per Customer]
 GO
 create view [Total Revenues per Customer] as
-SELECT C.CustomerID, C.CustomerName, C.CompanyName, ISNULL(SUM(ROUND(OD.Quantity * OD.UnitPrice * (1 - OD.Discount), 2)), 0) [Total]
+SELECT C.CustomerID, C.CompanyName, ISNULL(SUM(ROUND(OD.Quantity * OD.UnitPrice * (1 - OD.Discount), 2)), 0) [Total]
 FROM Customers C
 	LEFT JOIN Orders O ON C.CustomerID = O.CustomerID
 	LEFT JOIN [Order Details] OD on O.OrderID = OD.OrderID
