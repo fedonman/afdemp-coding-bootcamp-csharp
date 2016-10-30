@@ -89,13 +89,13 @@ namespace DemoEf6
         public static void CounAllPosts()
         {
             using (var db = new BlogContext()) {
+
                 var totalPost = db.Posts.Count();
                 Console.WriteLine($"Total posts {totalPost}");
-            }
 
-            using (var db = new BlogContext()) {
                 var sumTotalLikesInPosts = db.Posts.Sum(x=>x.Likes);
                 Console.WriteLine($"Total posts likes {sumTotalLikesInPosts}");
+
             }
 
             //...
