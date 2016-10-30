@@ -12,8 +12,12 @@ namespace DemoEf6
     {
         static void Main(string[] args)
         {
-            PullDataFromTheDatabase();
-            InsertDataToTheDatabase();
+            //PullDataFromTheDatabase();
+            //InsertDataToTheDatabase();
+            //FindDataAndUpdate();
+            //FindDataAndDelete();
+            ASimpleJoin();
+            //CounAllPosts();
         }
 
         public static void PullDataFromTheDatabase()
@@ -32,11 +36,11 @@ namespace DemoEf6
         {
             var blog = new Blog()
             {
-                Title = "My Ef Blog",
+                Title = "My test Ef Blog",
                 Posts = new List<Post>()
                 {
-                    new Post() { Title = "Post One" },
-                    new Post() { Title = "Post Two" },
+                    new Post() { Title = "Test Post One" },
+                    new Post() { Title = "Test Post Two" },
                 }
             };
             using (var db = new BlogContext())
@@ -50,7 +54,7 @@ namespace DemoEf6
         {
             using (var db = new BlogContext())
             {
-                var blog = db.Blogs.Where(b => b.Title == "Post Two").FirstOrDefault();
+                var blog = db.Blogs.Where(b => b.Title == "My Ef Blog").FirstOrDefault();
                 blog.Title = "My Awesome Ef Blog";
                 db.SaveChanges();
             }
@@ -88,6 +92,13 @@ namespace DemoEf6
                 var totalPost = db.Posts.Count();
                 Console.WriteLine($"Total posts {totalPost}");
             }
+
+            using (var db = new BlogContext()) {
+                var sumTotalLikesInPosts = db.Posts.Sum(x=>x.Likes);
+                Console.WriteLine($"Total posts likes {sumTotalLikesInPosts}");
+            }
+
+            //...
         }
     }
 }

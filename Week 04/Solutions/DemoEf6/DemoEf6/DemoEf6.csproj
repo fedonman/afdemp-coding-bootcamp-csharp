@@ -53,14 +53,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlogContext.cs" />
+    <Compile Include="Migrations\201610301259326_Init.cs" />
+    <Compile Include="Migrations\201610301259326_Init.Designer.cs">
+      <DependentUpon>201610301259326_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610301304035_AddUserSupportAndLikesField.cs" />
+    <Compile Include="Migrations\201610301304035_AddUserSupportAndLikesField.Designer.cs">
+      <DependentUpon>201610301304035_AddUserSupportAndLikesField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Blog.cs" />
     <Compile Include="Model\Post.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610301259326_Init.resx">
+      <DependentUpon>201610301259326_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610301304035_AddUserSupportAndLikesField.resx">
+      <DependentUpon>201610301304035_AddUserSupportAndLikesField.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

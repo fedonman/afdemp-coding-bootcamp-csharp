@@ -12,6 +12,7 @@ namespace DemoEf6
 
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<User> Users { get; set; }
 
         //To access the fluent API you override the OnModelCreating method in DbContext
         protected override void OnModelCreating(DbModelBuilder dbModelBuilder)
