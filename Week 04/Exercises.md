@@ -58,9 +58,10 @@ public class Post
 
 ## Exercise `Personal Website - HTML`
 Your ultimate task is to create a fully functional Personal Website (PW). The PW has three pages:
-1. __Home__ page. The home page consists of:
-  * Heading with your tagline
-  * A photo of you and short description
+
+1. __Home__ page. The home page consists of:  
+  * Heading with your tagline  
+  * A photo of you and short description  
   * List of academic experience
   * List of hobbies
 2. __Blog__ page. The blog page includes a list of posts.
