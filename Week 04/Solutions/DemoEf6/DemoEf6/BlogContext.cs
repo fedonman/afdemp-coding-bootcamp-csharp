@@ -6,7 +6,7 @@ namespace DemoEf6
 {
     public class BlogContext : DbContext
     {
-        public BlogContext() : base ("BlogContextConStringName")
+        public BlogContext() : base ("ConnectionName")
         {
         }
 

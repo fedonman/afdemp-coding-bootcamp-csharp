@@ -1,4 +1,5 @@
-# Week 04 - ORMS / Entity Framework
+# Week 04
+## Entity Framework / HTML & CSS / Bootstrap Framework / Razor
 
 
 ## Exercise Ef6
@@ -12,35 +13,35 @@
 
 ```csharp
 public class User
-    {
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public string Email { get; set; }
-        public string FullName { get; set; }
+{
+    public int Id { get; set; }
+    public string UserName { get; set; }
+    public string Email { get; set; }
+    public string FullName { get; set; }
 
-        //Navigation Property
-        public virtual ICollection<Post> Posts { get; set; }
-    }
+    //Navigation Property
+    public virtual ICollection<Post> Posts { get; set; }
+}
 
 public class Post
-    {
-        //Primary Key
-        public int Id { get; set; }
-        [MaxLength(400)]
-        public string Title { get; set; }
-        public string Content { get; set; }
-        public int? Likes { get; set; }
-        
-        public int BlogId { get; set; }
-        public int UserId { get; set; }
+{
+    //Primary Key
+    public int Id { get; set; }
+    [MaxLength(400)]
+    public string Title { get; set; }
+    public string Content { get; set; }
+    public int? Likes { get; set; }
 
-        //Navigation Property
-        [ForeignKey("BlogId")]
-        public virtual Blog Blog { get; set; }
-        //Navigation Property
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
-    }
+    public int BlogId { get; set; }
+    public int UserId { get; set; }
+
+    //Navigation Property
+    [ForeignKey("BlogId")]
+    public virtual Blog Blog { get; set; }
+    //Navigation Property
+    [ForeignKey("UserId")]
+    public virtual User User { get; set; }
+}
 ```
 
 8. Add a migration and update the database
@@ -53,4 +54,3 @@ public class Post
     5. Pull data in a simple Join (and check it in Sql Server Profiler)
     6. Do a sum and a count test
 11. If your are ready try to do a model for your project database
-

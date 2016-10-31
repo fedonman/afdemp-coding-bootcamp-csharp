@@ -16,8 +16,8 @@ namespace DemoEf6
             //InsertDataToTheDatabase();
             //FindDataAndUpdate();
             //FindDataAndDelete();
-            ASimpleJoin();
-            //CounAllPosts();
+            //ASimpleJoin();
+            CounAllPosts();
         }
 
         public static void PullDataFromTheDatabase()
@@ -30,17 +30,38 @@ namespace DemoEf6
             foreach (var p in lstPosts) {
                 Console.WriteLine($"Post with id {p.Id} has the title {p.Title}.");
             }
+            Console.ReadKey();
+        }
+
+        public static void PullDataFromTheDatabaseUsingQueries()
+        {
+            var lstPosts = new List<Post>();
+            using (var db = new BlogContext())
+            {
+                lstPosts = (from p in db.Posts
+                                select p).ToList();
+            }
+            foreach (var p in lstPosts)
+            {
+                Console.WriteLine($"Post with id {p.Id} has the title {p.Title}.");
+            }
+            Console.ReadKey();
         }
         
         public static void InsertDataToTheDatabase()
         {
+            int papaId;
+            using (var db = new BlogContext())
+            {
+                papaId = db.Users.FirstOrDefault(x => x.FullName == "Michalis Papadakis").Id;
+            }
             var blog = new Blog()
             {
                 Title = "My test Ef Blog",
                 Posts = new List<Post>()
                 {
-                    new Post() { Title = "Test Post One" },
-                    new Post() { Title = "Test Post Two" },
+                    new Post() { Title = "Test Post One", UserId = papaId },
+                    new Post() { Title = "Test Post Two", UserId = papaId },
                 }
             };
             using (var db = new BlogContext())
@@ -48,6 +69,7 @@ namespace DemoEf6
                 db.Blogs.Add(blog);
                 db.SaveChanges();
             }
+
         }
         
         public static void FindDataAndUpdate()
@@ -74,7 +96,7 @@ namespace DemoEf6
             //don't forget using System.Data.Entity;
             var lstBlogs = new List<Blog>();
             using (var db = new BlogContext()) {
-                lstBlogs = db.Blogs.Include(b => b.Posts).ToList();
+                lstBlogs = db.Blogs.Include(b => b.Posts).OrderBy(b => b.Title).ToList();
             }
 
             foreach (var b in lstBlogs) {
@@ -83,6 +105,7 @@ namespace DemoEf6
                     Console.WriteLine($"This is a post title : {p.Title}");
                 }
             }
+            Console.ReadKey();
         }
 
 
@@ -93,7 +116,7 @@ namespace DemoEf6
                 var totalPost = db.Posts.Count();
                 Console.WriteLine($"Total posts {totalPost}");
 
-                var sumTotalLikesInPosts = db.Posts.Sum(x=>x.Likes);
+                var sumTotalLikesInPosts = db.Posts.Sum(x => x.Likes);
                 Console.WriteLine($"Total posts likes {sumTotalLikesInPosts}");
 
             }

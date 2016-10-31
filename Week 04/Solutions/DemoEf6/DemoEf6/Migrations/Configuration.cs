@@ -36,16 +36,25 @@ namespace DemoEf6.Migrations
 
             context.SaveChanges();
 
+            // method-based LINQ
             var papadId = context.Users.FirstOrDefault(x => x.FullName == "Michalis Papadakis").Id;
-            var xrklvId = context.Users.FirstOrDefault(x => x.FullName == "Michalis Papadakis").Id;
+            
+            // query-based LINQ
+            var papaId0 = (from u in context.Users
+                           where u.FullName == "Michalis Papadakis"
+                          select u.Id).FirstOrDefault();
+
+            var xrklvId = context.Users.FirstOrDefault(x => x.FullName == "Chrysostomos Kolovos").Id;
             var blog = context.Blogs.AsNoTracking().FirstOrDefault(x => x.Title == "My Ef Blog");
 
+            var userIds = (from u in context.Users
+                           select u.Id).ToList();
 
             context.Posts.AddOrUpdate(p => new { p.Title, p.UserId },
               new Post() { Title = "Post One", Content = "Post One Content", Likes = 45, UserId = papadId, BlogId = blog.Id },
               new Post() { Title = "Post Two", Content = "Post Two Content", Likes = 1234, UserId = papadId, BlogId = blog.Id },
               new Post() { Title = "Post Three", Content = "Post Three Content", Likes = 154, UserId = xrklvId, BlogId = blog.Id },
-              new Post() { Title = "Post Four", Content = "Post Four Content", Likes = 22, UserId = papadId, BlogId = blog.Id }
+              new Post() { Title = "Post Four", Content = "Post Four Content", Likes = 22, UserId = userIds[new Random().Next(0, userIds.Count)], BlogId = blog.Id }
             );
             
             context.SaveChanges();
