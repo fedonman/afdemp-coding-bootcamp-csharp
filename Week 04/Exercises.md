@@ -77,3 +77,26 @@ All pages have
 * a footer (copyright info)
 
 Since current PW is a static website, you have to hardcode every information. Try to use semantically correct HTML!
+
+
+## Exercise `Personal Website - CSS`
+Style your PW.
+
+### Fonts
+Use `Open Sans` from Google Fonts for every text. Define font size / line height / font weight for each text element. Font color should be #222222.
+
+### Links
+Links should be purple (find your own variance). On hover they should become black.
+
+### Layout
+The PW should be full-width and have background color of white.
+
+Header is 80px height and has the Title aligned on the left with a 20px left margin and Navigation on the right. Choose a combination of background - text colors. (You can either keep the dark fonts and choose a light(but not white) background or the opposite).
+
+Footer is 80px height and has the text aligned to center. Background-color is the same as the rest website, but has a border of 1px on the top.
+
+### Home Page
+The Tagline section is full-screen with the text aligned to center both horizontally and vertically.
+The rest sections have maximum width 60% of the screen size, are center-aligned and have text-align: justify.
+
+Use Flexbox!
