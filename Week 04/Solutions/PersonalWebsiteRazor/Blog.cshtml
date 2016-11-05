@@ -1,0 +1,137 @@
+﻿@using Model;
+@{
+    Layout = "~/Shared/_Layout.cshtml";
+    PageData["page-id"] = "blog-page";
+    Page.Title = "Blog";
+
+    // assume filter requests are empty
+    var search_request = "";
+    var category_request = "";
+
+    // variables for entering new post
+    var Title = "";
+    var CategoryId = 0;
+    var Content = "";
+    var PostedOn = DateTime.Now;
+
+    // connect to DB
+    var db = new Blog();
+    // get Categories list
+    List<Categories> categories = db.Categories.ToList();
+    List<Posts> posts = new List<Posts>();
+    // start Posts query
+    var posts_query = db.Posts.Select(x => x);
+
+    bool addNew = false;
+
+    if (UrlData.Count >= 2)
+    {
+        Response.Redirect("~/Blog");
+    }
+    else if (UrlData.Count == 1 && UrlData[0] == "new")
+    {
+        addNew = true;
+        if (IsPost)
+        {
+            CategoryId = Request.Form["post_category"].AsInt();
+            Title = Request.Form["post_title"];
+            Content = WebUtility.HtmlEncode(Request.Unvalidated["post_content"]);
+
+            var p = new Posts()
+            {
+                Title = Title,
+                Content = Content,
+                CategoryId = CategoryId,
+                PostedOn = PostedOn
+            };
+            db.Posts.Add(p);
+            db.SaveChanges();
+        }
+    }
+    else
+    {
+        if (IsPost)
+        {
+            if (!Request["post_to_delete"].IsEmpty())
+            {
+                var _id = Request["post_to_delete"].AsInt();
+                var post = db.Posts.First(x => x.Id == _id);
+                db.Posts.Remove(post);
+                db.SaveChanges();
+                Response.Redirect("~/Blog");
+            }
+
+            // get new values of filters
+            search_request = Request.Form["search_filter"];
+            category_request = Request.Form["category_filter"];
+            // update Posts query if category filter present
+            if (!category_request.IsEmpty() && category_request.IsInt())
+            {
+                var id = category_request.AsInt();
+                posts_query = posts_query.Where(x => x.CategoryId == id);
+            }
+            // update Posts query if search filter present
+            if (!search_request.IsEmpty())
+            {
+                var s = WebUtility.HtmlDecode(search_request);
+                posts_query = posts_query.Where(x => x.Title.Contains(search_request) || x.Content.Contains(s));
+            }
+            // get Posts according to built quer
+        }
+        posts = posts_query.ToList();
+    }
+}
+@if (!addNew)
+{
+    <section class="blog-content">
+        <h2>Posts</h2>
+        @foreach (var post in posts)
+        {
+            <article>
+                <header>
+                    <form action="~/blog" method="post">
+                        <input type="hidden" name="post_to_delete" value="@post.Id" />
+                        <button type="submit">Delete</button>
+                    </form>
+                    <h3>@post.Title</h3>
+                    <p class="article-date">Posted on <time datetime="@post.PostedOn">@String.Format("{0:dddd, MMMM d, yyyy}", post.PostedOn)</time>.</p>
+                    <p class="article-category">Category: <span>@post.Categories.Name</span></p>
+                </header>
+                @Html.Raw(WebUtility.HtmlDecode(post.Content))
+            </article>
+        }
+    </section>
+    <aside class="blog-sidebar">
+        <form action="~/Blog" method="post">
+            <label for="search-filter">Search</label>
+            <input id="search-filter" name="search_filter" type="search" value="@search_request" />
+            <label for="category-filter">Filter by category</label>
+            <select id="category-filter" name="category_filter">
+                <option value=""></option>
+                @foreach (var cat in categories)
+                {
+                    <option @if (category_request == cat.Id.ToString()) { <text>selected</text> } value="@cat.Id">@cat.Name</option>
+                }
+            </select>
+            <button type="submit">Apply</button>
+        </form>
+    </aside>
+}
+else
+{
+    <form class="new-post-form" action="~/Blog/new" method="post">
+        <h2>New Post</h2>
+        <label for="category">Category:</label>
+        <select id="category" name="post_category">
+            @foreach (var cat in categories)
+            {
+                <option value="@cat.Id">@cat.Name</option>
+            }
+        </select>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="post_title" />
+        <label for="content">Content:</label>
+        @Html.TextArea("post_content", new Dictionary<string, string>() { { "id", "content" } })
+        <button type="submit">Submit</button>
+    </form>
+}

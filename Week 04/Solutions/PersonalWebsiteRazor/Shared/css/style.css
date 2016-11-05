@@ -1,0 +1,155 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&subset=greek');
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    color: #222222;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 28px;
+    line-height: 1.4;
+}
+
+h2 {
+    font-size: 24px;
+    line-height: 1.4;
+}
+
+h3 {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+h4 {
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+a {
+    color: #96218c;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #000000;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: antiquewhite;
+}
+
+.page-header h1 {
+    margin-left: 20px;
+}
+
+.page-header nav ul {
+    display: flex;
+}
+
+.page-header nav ul li {
+    margin: 0 20px;
+}
+
+body>footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    border-top: 1px solid #222222;
+}
+
+#home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#home-page header {
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#home-page section {
+    width: 60%;
+    text-align: center;
+}
+
+#home-page section p {
+    text-align: justify;
+}
+
+#home-page img {
+    display: block;
+    width: 100%;
+}
+
+#home-page #hobbies ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#blog-page {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.blog-content {
+    width: 60%;
+}
+
+.blog-content h2 {
+    border-bottom: 1px solid #222222;
+}
+
+.blog-sidebar {
+    margin: 40px 0;
+}
+
+.new-post-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.new-post-form label{
+    margin: 10px 0 5px;
+}
+
+.new-post-form textarea {
+    height: 200px;
+}
+
+.new-post-form button {
+    align-self: center;
+    margin: 40px 0;
+    width: 150px;
+}
