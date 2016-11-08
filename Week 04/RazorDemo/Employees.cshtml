@@ -1,0 +1,25 @@
+﻿@using Model;
+@{
+    Layout = "~/Shared/_Database.cshtml";
+    Page.Title = "Employees";
+
+    var db = new Model();
+    WebGrid grid;
+
+    if (@UrlData.Count == 1 && @UrlData[0].IsInt())
+    {
+        int id = @UrlData[0].AsInt();
+        var employees = db.Employees.Where(x => x.EmployeeID == id);
+        grid = new WebGrid(employees);
+    }
+    else
+    {
+        var employees = db.Employees;
+        grid = new WebGrid(employees);
+    }
+    //var employees = db.Employees;
+    //var grid = new WebGrid(employees);
+}
+<div>
+    @grid.GetHtml()
+</div>

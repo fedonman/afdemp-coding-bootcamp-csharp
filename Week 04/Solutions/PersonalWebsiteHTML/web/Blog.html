@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Blog - PW</title>
+    <meta name="description" content="Personal website of Vyron Vasileiadis" />
+    <meta charset="utf-8" />
+</head>
+<body>
+    <header class="page-header">
+        <h1>Blog</h1>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="blog-page" class="page-content">
+        <section class="blog-content">
+            <h2>Posts</h2>
+            <article>
+                <header>
+                    <h2>Link Source Ordering</h2>
+                    <p class="article-date">Posted on <time datetime="2016-11-01">1st November 2016</time>.</p>
+                    <p class="article-category">Category: <span>Development</span></p>
+                </header>
+                <section>
+                    <h3>Introduction</h3>
+                    <p>If you are about to design a new website then please read this article first. By following some simple rules regarding link ordering, you can vastly improve the Search Engine Optimisation of your entire website.</p>
+                    <p>It has been common knowledge for a while now that content source ordering is important for optimising a page. Content that comes closer to the top in a page's HTML source code is given more priority by the search engines than content further down. This is why it helps to build layouts where the main content column comes before any side columns. See <a href="http://matthewjamestaylor.com/blog/perfect-multi-column-liquid-layouts">my liquid-layouts with column source ordering</a> for a good example of this. The point I want to make is this: the source order does not only apply to content, it also applies to links!</p>
+                </section>
+                <section>
+                    <h3>Link source ordering</h3>
+                    <img src="img/link-source-ordering-1.jpg" alt="Link source ordering" />
+                    <p>Years ago I discovered that the highest ranking page on my website was actually one of my least important pages! It was my mailing list subscription page, and it was ranking higher than everything else. I was shocked because there was nothing on this page except for a basic email subscription form. How could a page with no content get such a huge ranking?</p>
+                    <p>The design of my website was not unusual. I had a logo in the top left corner, followed by a standard navigation bar across the width of the site and two columns below that. The main content was in a wide column, with a sub menu on the side in a narrow column. But then at the top right of the page I had a little link to my mailing list page - this was the culprit!</p>
+                </section>
+            </article>
+            <article>
+                <header>
+                    <h2>Best Art and Culture tours in Bali, Indonesia</h2>
+                    <p class="post-date">Posted on <time datetime="2016-08-26">26th August 2016</time>.</p>
+                    <p class="post-category">Travelling</p>
+                    <img src="img/bali-indonesia-tours-1.jpg" alt="Bali, Indonesia" title="Bali, Indonesia" />
+                </header>
+                <p>The small Indonesian island province of Bali is one of the nation’s top tourist spots, celebrated for its temples, artistic communities and incredible landscapes. Discover the best art and culture tours Bali has to offer.</p>
+                <section>
+                    <h3>Bali Agung Tours – Tanah Lot Tour</h3>  
+                    <p>Known as the land of a thousand temples, Bali is home to more than 5,000 stunning examples. This makes it difficult to know where to begin. Tanah Lot temple is one of the most famous, known primarily for its unusual position atop a rock formation at the edge of the sea. Bali Agung Tours brings travelers to the temple at sunset, taking advantage of the warm glow produced by the last rays of daylight. Although the temple is visited at the end of the day, tours begin at 8:30am. It takes visitors to other locations including the Suwung, Celuk, Kemenuh and Kayuamba villages as well as the spectacular waterfall at Tegenungan.</p>
+                    <img src="img/bali-indonesia-tours-3.jpg" alt="Bali Agung Tours – Tanah Lot Tour" />
+                </section>
+                <section>
+                    <h3>Bali Bintang Tour Company – Bintang Downhill Cycling Tour</h3>
+                    <p>The Bintang Downhill Cycling Tour is not a typical bicycle adventure. It uses the bike as a peaceful and exhilarating way to journey around the Northeastern area of Kintamani. Groups are led through the region’s lush, green landscape to visit ancient Hindu temples and local craftspeople on the way to the charming and authentic village of Pejeng. To begin the tour guests are brought from their hotels to enjoy a morning coffee while soaking in the majestic sights at Lake Batur. Later in the day a traditional Indonesian lunch, prepared in the open kitchen of a Balinese family, is enjoyed in a pleasant garden setting. The price of the tour includes a mountain bike, helmet, water, coffee, a soft drink and lunch as well as transport to and from the hotel.</p>
+                    <img src="img/bali-indonesia-tours-2.jpg" alt="Bali Bintang Tour Company – Bintang Downhill Cycling Tour"/>
+                </section>
+                <aside>
+                    <p>Bali is an island and province of Indonesia. The province includes the island of Bali and a few smaller neighbouring islands, notably Nusa Penida, Nusa Lembongan, and Nusa Ceningan. It is located at the westernmost end of the Lesser Sunda Islands, between Java to the west and Lombok to the east. Its capital, Denpasar, is located in the southern part of the island.</p>
+                    <p>With a population of 3,890,757 in the 2010 census,[4] and 4,225,000 as of January 2014,[5] the island is home to most of Indonesia's Hindu minority. According to the 2010 Census, 83.5% of Bali's population adhered to Balinese Hinduism,[3] followed by 13.4% Muslim, Christianity at 2.5%, and Buddhism 0.5%.</p>
+                </aside>
+            </article>
+        </section>
+        <aside id="blog-sidebar">
+            <form>
+                <label for="search-filter">Search</label>
+                <input id="search-filter" type="search" placeholder="" />
+                <label for="category-filter">Filter by category</label>
+                <select id="category-filter">
+                    <option>Development</option>
+                    <option>Travelling</option>
+                    <option>Recipes</option>
+                </select>
+            </form>
+        </aside>
+    </main>
+    <footer class="page-footer">&copy; 2016 Copyright of Vyron Vasileiadis</footer>
+</body>
+</html>
