@@ -1,0 +1,20 @@
+﻿@model DiceShop.ViewModels.DicesViewModel
+
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.Name</td>
+    <td>
+        @if (Model.IsRigged == true)
+        {
+            <span class="glyphicon glyphicon-class">
+                yes
+            </span>
+        }
+    </td>
+    <td>@Model.SupplierName</td>
+    <td>
+        <a href="@Url.Action("EditItem","Dice",new {itemId=Model.Id })">Edit</a>
+        <a href="@Url.Action("ViewItem","Dice",new { itemId = Model.Id })">View</a>
+        <a href="@Url.Action("DeleteItem","Dice",new { itemId = Model.Id })">Delete</a>
+    </td>
+</tr>
