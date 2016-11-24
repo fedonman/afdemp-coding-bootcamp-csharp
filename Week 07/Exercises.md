@@ -11,4 +11,15 @@ In Phase A, we only have **products**, **categories** and **stores**. Categories
 3. Implement a Data Access Layer (DAL) exposing methods for common database actions.  
 3. Create controllers and views for viewing/inserting/editing/deleting the model.  
 
+Categories:
+* Computers  
+  * Hardware
+  * Monitors
+* Entertainment 
+  * Televisions & Accessories
+  * Projectors & Accessories
+* Gaming
+  * Consoles
+  * Virtual Reality
+
 ## Skroutz - Phase B
