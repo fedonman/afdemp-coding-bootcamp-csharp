@@ -1,6 +1,6 @@
 # Week 07
 
-Our aim is to develop a website similar to skroutz.gr (or scrooge.com) limited to *technology* products.
+Our aim is to develop a website similar to skroutz.gr (or scrooge.co.uk) limited to *technology* products.
 
 Development of the website should start from an empty MVC project and will be separated into phases of advancing difficulty and complexity.
 
