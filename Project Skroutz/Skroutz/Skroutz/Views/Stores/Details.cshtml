@@ -1,0 +1,50 @@
+﻿@model Skroutz.Models.Store
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Store</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Web)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Web)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Headquarters)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Headquarters)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
