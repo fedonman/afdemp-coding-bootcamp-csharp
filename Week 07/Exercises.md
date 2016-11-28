@@ -23,3 +23,8 @@ Categories:
   * Virtual Reality
 
 ## Skroutz - Phase B
+Every product has attributes. Products of the same category have the same attribute definitions, but different attribute values.
+1. Extend the model.  
+2. Populate the database (not all attributes are needed, but at least those that scrooge.co.uk uses for filtering).  
+3. Update the controllers and views.  
+
