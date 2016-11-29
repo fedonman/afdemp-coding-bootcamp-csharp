@@ -4,28 +4,47 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
+<h2>Product Details</h2>
+<hr />
 <div>
     <h4>Product</h4>
-    <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Category.Name)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+    </dl>
+    <h4>Attributes</h4>
+    <dl class="dl-horizontal">
+        @foreach (var item in Model.Attributes)
+        {
+            <dt>
+                @Html.DisplayFor(model => item.AttributeKey.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => item.Value) @Html.DisplayFor(model => item.AttributeKey.MeasurementUnit)
+            </dd>
+        }
+    </dl>
+    <h4>Available at</h4>
+    <dl class="dl-horizontal">
+        @foreach (var item in Model.Inventory)
+        {
+            <dt>
+                @Html.DisplayFor(model => item.Store.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => item.Price)
+            </dd>
+        }
     </dl>
 </div>
 <p>

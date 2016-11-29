@@ -149,6 +149,10 @@
     <Compile Include="Migrations\201611281235048_update2.Designer.cs">
       <DependentUpon>201611281235048_update2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611281542536_display.cs" />
+    <Compile Include="Migrations\201611281542536_display.Designer.cs">
+      <DependentUpon>201611281542536_display.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AttributeKey.cs" />
     <Compile Include="Models\AttributeValue.cs" />
@@ -217,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611281235048_update2.resx">
       <DependentUpon>201611281235048_update2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611281542536_display.resx">
+      <DependentUpon>201611281542536_display.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

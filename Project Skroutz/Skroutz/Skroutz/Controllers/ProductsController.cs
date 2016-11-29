@@ -30,7 +30,10 @@ namespace Skroutz.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = await db.Products.FindAsync(id);
+            Product product = await db.Products
+                                    .Include(x => x.Attributes.Select(y => y.AttributeKey))
+                                    .Include(x => x.Inventory.Select(y => y.Store))
+                                    .FirstOrDefaultAsync(x => x.Id == id); //FindAsync(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -41,7 +44,7 @@ namespace Skroutz.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories.Include(x => x.Children).Where(x => x.Children.Count == 0), "Id", "Name");
+            ViewBag.CategoryId = new SelectList(db.Categories.Where(x => x.Children.Count == 0).Include(x => x.Children).ToList(), "Id", "Name", "Parent.Name", 0);
             return View();
         }
 
@@ -59,7 +62,7 @@ namespace Skroutz.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(db.Categories.Where(x => x.Children.Count == 0).ToList(), "Id", "Name", "Parent.Name", product.CategoryId);
             return View(product);
         }
 
@@ -75,7 +78,7 @@ namespace Skroutz.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(db.Categories.Where(x => x.Children.Count == 0).ToList(), "Id", "Name", "Parent.Name", product.CategoryId);
             return View(product);
         }
 
@@ -92,7 +95,7 @@ namespace Skroutz.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", "Parent.Name", product.CategoryId);
             return View(product);
         }
 

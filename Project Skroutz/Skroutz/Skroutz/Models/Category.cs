@@ -10,7 +10,7 @@ namespace Skroutz.Models
     {
             public int Id { get; set; }
             public string Name { get; set; }
-            [Display(Name = "Subcategory of")]
+            [Display(Name = "Parent Category")]
             public int? ParentId { get; set; }
             public virtual Category Parent { get; set; } 
             public virtual ICollection<Category> Children { get; set; }

@@ -16,7 +16,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.ProductId, "ProductId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProductId, "Product", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
@@ -24,9 +24,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AttributeKeyId, "AttributeKeyId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AttributeKeyId, "Attribute", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("AttributeKeyId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("AttributeKeyId", new SelectList(string.Empty, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.AttributeKeyId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -38,7 +38,6 @@
                 @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -54,3 +53,30 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#ProductId").change(function () {
+            $("#AttributeKeyId").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetAttributeKeysOfProduct")',
+                dataType: 'json',
+                data: { productId: $("#ProductId").val() },
+                success: function (attributes) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(attributes, function (i, attribute) {
+                        $("#AttributeKeyId").append('<option value="'
+                        + attribute.Value + '">'
+                        + attribute.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve attributes.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>

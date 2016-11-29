@@ -20,6 +20,10 @@
         @Html.HiddenFor(model => model.StoreId)
 
         <div class="form-group">
+            <p class="col-md-2 text-right">@Html.DisplayNameFor(model => model.ProductId)</p>
+            <p class="col-md-10">@Html.DisplayFor(model => model.Product.Name)</p>
+            <p class="col-md-2 text-right">@Html.DisplayNameFor(model => model.StoreId)</p>
+            <p class="col-md-10">@Html.DisplayFor(model => model.Store.Name)</p>
             @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })

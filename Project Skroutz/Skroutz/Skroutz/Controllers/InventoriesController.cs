@@ -24,13 +24,13 @@ namespace Skroutz.Controllers
         }
 
         // GET: Inventories/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int? productId, int? storeId)
         {
-            if (id == null)
+            if (productId == null || storeId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Inventory inventory = await db.Inventories.FindAsync(id);
+            Inventory inventory = await db.Inventories.FindAsync(productId, storeId);
             if (inventory == null)
             {
                 return HttpNotFound();
@@ -41,7 +41,7 @@ namespace Skroutz.Controllers
         // GET: Inventories/Create
         public ActionResult Create()
         {
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name");
+            ViewBag.ProductId = new SelectList(db.Products.Include(x => x.Category).ToList(), "Id", "Name", "Category.Name", 0);
             ViewBag.StoreId = new SelectList(db.Stores, "Id", "Name");
             return View();
         }
@@ -53,31 +53,32 @@ namespace Skroutz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ProductId,StoreId,Price")] Inventory inventory)
         {
-            if (ModelState.IsValid)
+            var inv = db.Inventories.Find(inventory.ProductId, inventory.StoreId);
+            if (ModelState.IsValid && inv == null)
             {
                 db.Inventories.Add(inventory);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", inventory.ProductId);
+            ViewBag.ProductId = new SelectList(db.Products.OrderBy(x => x.Name), "Id", "Name", "Category.Name", inventory.ProductId);
             ViewBag.StoreId = new SelectList(db.Stores, "Id", "Name", inventory.StoreId);
             return View(inventory);
         }
 
         // GET: Inventories/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(int? productId, int? storeId)
         {
-            if (id == null)
+            if (productId == null || storeId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Inventory inventory = await db.Inventories.FindAsync(id);
+            Inventory inventory = await db.Inventories.FindAsync(productId, storeId);
             if (inventory == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", inventory.ProductId);
+            ViewBag.ProductId = new SelectList(db.Products.OrderBy(x => x.Name), "Id", "Name", "Category.Name", inventory.ProductId);
             ViewBag.StoreId = new SelectList(db.Stores, "Id", "Name", inventory.StoreId);
             return View(inventory);
         }
@@ -95,19 +96,19 @@ namespace Skroutz.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", inventory.ProductId);
+            ViewBag.ProductId = new SelectList(db.Products.OrderBy(x => x.Name), "Id", "Name", "Category.Name", inventory.ProductId);
             ViewBag.StoreId = new SelectList(db.Stores, "Id", "Name", inventory.StoreId);
             return View(inventory);
         }
 
         // GET: Inventories/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(int? productId, int? storeId)
         {
-            if (id == null)
+            if (productId == null || storeId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Inventory inventory = await db.Inventories.FindAsync(id);
+            Inventory inventory = await db.Inventories.FindAsync(productId, storeId);
             if (inventory == null)
             {
                 return HttpNotFound();
@@ -118,9 +119,9 @@ namespace Skroutz.Controllers
         // POST: Inventories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int productId, int storeId)
         {
-            Inventory inventory = await db.Inventories.FindAsync(id);
+            Inventory inventory = await db.Inventories.FindAsync(productId, storeId);
             db.Inventories.Remove(inventory);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

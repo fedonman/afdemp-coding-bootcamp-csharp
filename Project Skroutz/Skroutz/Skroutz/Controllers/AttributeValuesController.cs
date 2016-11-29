@@ -12,6 +12,8 @@ using Skroutz.Models;
 
 namespace Skroutz.Controllers
 {
+    [RoutePrefix("AttributeValues")]
+    [Route("{action}")]
     public class AttributeValuesController : Controller
     {
         private SkroutzContext db = new SkroutzContext();
@@ -23,14 +25,15 @@ namespace Skroutz.Controllers
             return View(await attributes.ToListAsync());
         }
 
-        // GET: AttributeValues/Details/5
-        public async Task<ActionResult> Details(int? id)
+        // GET: AttributeValues/Details/5/10
+        [Route("Details/{productId}/{attributeKeyId}")]
+        public async Task<ActionResult> Details(int? productId, int? attributeKeyId)
         {
-            if (id == null)
+            if (productId == null || attributeKeyId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AttributeValue attributeValue = await db.Attributes.FindAsync(id);
+            AttributeValue attributeValue = await db.Attributes.FindAsync(productId, attributeKeyId);
             if (attributeValue == null)
             {
                 return HttpNotFound();
@@ -66,13 +69,14 @@ namespace Skroutz.Controllers
         }
 
         // GET: AttributeValues/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        [Route("Edit/{productId}/{attributeKeyId}")]
+        public async Task<ActionResult> Edit(int? productId, int? attributeKeyId)
         {
-            if (id == null)
+            if (productId == null || attributeKeyId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AttributeValue attributeValue = await db.Attributes.FindAsync(id);
+            AttributeValue attributeValue = await db.Attributes.FindAsync(productId, attributeKeyId);
             if (attributeValue == null)
             {
                 return HttpNotFound();
@@ -101,13 +105,14 @@ namespace Skroutz.Controllers
         }
 
         // GET: AttributeValues/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        [Route("Delete/{productId}/{attributeKeyId}")]
+        public async Task<ActionResult> Delete(int? productId, int? attributeKeyId)
         {
-            if (id == null)
+            if (productId == null || attributeKeyId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AttributeValue attributeValue = await db.Attributes.FindAsync(id);
+            AttributeValue attributeValue = await db.Attributes.FindAsync(productId, attributeKeyId);
             if (attributeValue == null)
             {
                 return HttpNotFound();
@@ -118,12 +123,20 @@ namespace Skroutz.Controllers
         // POST: AttributeValues/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        [Route("Delete/{productId}/{attributeKeyId}")]
+        public async Task<ActionResult> DeleteConfirmed(int productId, int attributeKeyId)
         {
-            AttributeValue attributeValue = await db.Attributes.FindAsync(id);
+            AttributeValue attributeValue = await db.Attributes.FindAsync(productId, attributeKeyId);
             db.Attributes.Remove(attributeValue);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult GetAttributeKeysOfProduct(int productId)
+        {
+            int categoryId = db.Products.Find(productId).CategoryId;
+            List<AttributeKey> attributes = db.AttributeKeys.Select(x => x).Where(x => x.CategoryId == categoryId).ToList();
+            return Json(new SelectList(attributes, "Id", "Name"));
         }
 
         protected override void Dispose(bool disposing)

@@ -15,7 +15,7 @@ namespace Skroutz.Models
     public class AttributeKey
     {
         public int Id { get; set; }
-        [Display(Name="Attribute")]
+        [Display(Name="Name")]
         public string Name { get; set; }
         [Display(Name="Measurement Unit")]
         public string MeasurementUnit { get; set; }

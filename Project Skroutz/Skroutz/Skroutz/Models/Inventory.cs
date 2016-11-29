@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.UI;
 
 namespace Skroutz.Models
 {
@@ -24,6 +25,6 @@ namespace Skroutz.Models
         public int StoreId { get; set; }
         public virtual Store Store { get; set; }
         public decimal Price { get; set; }
-
     }
+
 }
