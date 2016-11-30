@@ -1,4 +1,4 @@
-# Week 07
+# Project Skroutz
 
 Our aim is to develop a website similar to skroutz.gr (or scrooge.co.uk) limited to *technology* products.
 
