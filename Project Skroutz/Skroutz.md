@@ -29,7 +29,7 @@ Every product has attributes. Products of the same category have the same attrib
 3. Update the controllers and views.  
 
 ## Skroutz - Phase C
-After inserting enough entries to the model, continue with the design of the main website. It should be similar to original website:
+After inserting enough entries to the model, continue with the design of the main website. It should be similar to original website:  
 1. Home page with full-screen section for search, boxes of categories.  
 2. Each category has its own page with boxes of subcategories.  
 3. Categories with no children lead to list of products. (No filters for now)  
