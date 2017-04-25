@@ -19,6 +19,8 @@ namespace Skroutz.Controllers
         private SkroutzContext db = new SkroutzContext();
 
         // GET: AttributeValues
+        [Route("")]
+        [Route("Index")]
         public async Task<ActionResult> Index()
         {
             var attributes = db.Attributes.Include(a => a.AttributeKey).Include(a => a.Product);
