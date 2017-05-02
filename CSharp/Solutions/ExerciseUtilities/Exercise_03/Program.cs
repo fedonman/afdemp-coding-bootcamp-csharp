@@ -28,12 +28,12 @@ namespace ExerciseUtilities
             int a = 5;
             int b = 10;
             Utilities.Swap(ref a, ref b);
-            Console.WriteLine(a);
+            Console.WriteLine($"a: {a}, b: {b}");
 
-            double x = 1.5;
-            double y = 2;
-            Utilities.Swap(ref x, ref y);
-            Console.WriteLine(x);
+            string x = "xxx";
+            string z = "zzz";
+            Utilities.Swap(ref x, ref z);
+            Console.WriteLine($"x: {x}, z: {z}");
 
             Console.ReadKey();
         }

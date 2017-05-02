@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,15 +28,22 @@ namespace ExerciseCoffee
             }
 
             //Just return a formated string
-            public string PrintInfo()
+            public override string ToString()
             {
+                //return Type + " coffe is " + (int)Type + "ml.";
+                //return string.Format("{0} coffee is {1} ml.", Type, (int)Type);
                 return $"{Type} coffee is {(int)Type} ml.";
             }
         }
 
         public class Order {
             //List containing items of type Coffee
-            private List<Coffee> items = new List<Coffee>();
+            private List<Coffee> items; // = new List<Coffee>();
+
+            public Order()
+            {
+                items = new List<Coffee>();
+            }
 
             //Function to add items into list
             public void Add(Coffee coffee)
@@ -49,6 +55,7 @@ namespace ExerciseCoffee
             public double CalculateCost()
             {
                 double cost = 0;
+
                 foreach (Coffee c in items)
                 {
                     switch(c.Type)
@@ -64,7 +71,7 @@ namespace ExerciseCoffee
                             break;
                         default:
                             break;
-                    }
+                    }         
                 }
                 return cost;
             }
@@ -72,12 +79,17 @@ namespace ExerciseCoffee
 
         static void Main(string[] args)
         {
+	        // Create new Coffee
             Coffee c1 = new Coffee(Coffee.CoffeeType.Small);
-            Console.WriteLine(c1.PrintInfo());
-
+            // Print info
+            Console.WriteLine(c1);
+            // Create new Order
             Order order = new Order();
+            // Add some coffees
             order.Add(c1);
             order.Add(new Coffee(Coffee.CoffeeType.Double));
+            order.Add(new Coffee(Coffee.CoffeeType.Normal));
+            // Calculate cost
             Console.WriteLine(order.CalculateCost());
 
             Console.ReadKey();
