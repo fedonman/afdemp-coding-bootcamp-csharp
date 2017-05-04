@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExerciseFraction
 {
@@ -39,7 +37,7 @@ namespace ExerciseFraction
 						denominator = value;
 					}
 					else {
-						//throw new ArithmeticException();
+						throw new ArithmeticException();
 					}
 				}
 			}
