@@ -19,7 +19,8 @@ Implement a University class containing university's info an a list of its Stude
 
 
 ## Exercise Zoo
-Implement the following classes: Dog, Cat, Lion. All of them are animals (Animal). Animals are characterized by age, name and gender. Some species have more species-specific properties (ie. dog breed). Each species makes a diffrent sound (use a virtual method in the Animal class). 
+Implement the following classes: Dog, Cat, Lion. All of them are animals (Animal). Animals are characterized by age, name and gender. Some species have more species-specific properties (ie. dog breed). Each species makes a diffrent sound (use a virtual method in the Animal class).
+
 Implement the Zoo class containing info about the zoo and a list of different animals. Create a function of Zoo that returns a formatted string of all the animals' name, age and the corresponding sound each one makes. Create a function that sorts the list by Animal's age (use IComprable on Animal).
 
 
