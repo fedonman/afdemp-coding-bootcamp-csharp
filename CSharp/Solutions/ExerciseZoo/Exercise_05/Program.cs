@@ -15,7 +15,7 @@ namespace ExerciseZoo
             Female = 200
         }
         //Parent class Animal
-        public abstract class Animal
+        public abstract class Animal : IComparable<Animal>
         {
             public int Age { get; protected set; }
             public string Name;
@@ -34,20 +34,35 @@ namespace ExerciseZoo
             {
                 return sound;
             }
-        }
 
-        //Child class Dog inherits from Animal
-        public class Dog : Animal
-        {
-            //Constructor of Dog inherits constructor of Animal
-            public Dog(string name, int age, Gender gender) : base(name, age, gender)
+            public int CompareTo(Animal other)
             {
-                //and then does Dog's specific stuff
-                sound = "wuf wuf";
+                return Age.CompareTo(other.Age);
             }
         }
 
-        //Same logic as Dog
+        public class Monkey : Animal
+        {
+            //Constructor of Monkey inherits constructor of Animal
+            public Monkey(string name, int age, Gender gender) : base(name, age, gender)
+            {
+                //and then does Monnkey's specific stuff
+                sound = "oug oug";
+            }
+        }
+
+        //Child class Lion inherits from Animal
+        public class Lion : Animal
+        {
+            //Constructor of Lion inherits constructor of Animal
+            public Lion(string name, int age, Gender gender) : base(name, age, gender)
+            {
+                //and then does Lion's specific stuff
+                sound = "AAARrrrrr";
+            }
+        }
+
+        //Same logic
         public class Cat : Animal
         {
             public Cat(string name, int age, Gender gender) : base(name, age, gender)
@@ -57,19 +72,56 @@ namespace ExerciseZoo
             
         }
 
+        public class Zoo
+        {
+            List<Animal> animals;
+            public string Name { get; private set; }
+
+            public Zoo(string name)
+            {
+                Name = name;
+                animals = new List<Animal>();
+            }
+
+            public void Add(Animal a)
+            {
+                animals.Add(a);
+            }
+
+            public string PrintAnimals()
+            {
+                string result = "";
+                foreach (Animal a in animals)
+                {
+                    result += $"{a.Name} is a {a.GetType()} of age {a.Age} says {a.MakeSound()}\n";
+                }
+                return result;
+            }
+
+            public void SortAnimals()
+            {
+                animals.Sort();
+            }
+        }
+
         static void Main(string[] args)
         {
-            //Array containing objects of parent class Animal
-            Animal[] animals = new Animal[]
-            {
-                new Dog("Lucy", 5, Gender.Female),
-                new Dog("Tom", 1, Gender.Male),
-                new Cat("Neda", 4, (Gender)200)
-            };
-            for (int i = 0; i < animals.Length; i++)
-            {
-                Console.WriteLine(animals[i].Name + " who is " + animals[i].Gender + " says \"" + animals[i].MakeSound() + "\"");
-            }
+            // Cannot create abstract classes
+            // Animal a = new Animal("Peter", 5, Gender.Male);
+            
+            // Create the zoo
+            Zoo zoo = new Zoo("Attiko Parko");
+
+            // Add some animals
+            zoo.Add(new Lion("Lucy", 5, Gender.Female));
+            zoo.Add(new Lion("Tom", 1, Gender.Male));
+            zoo.Add(new Cat("Neda", 4, (Gender)200));
+            zoo.Add(new Monkey("Jim", 10, Gender.Male));
+
+            // Print, Sort, and print again
+            Console.WriteLine(zoo.PrintAnimals());
+            zoo.SortAnimals();
+            Console.WriteLine(zoo.PrintAnimals());
 
             Console.ReadKey();
         }
