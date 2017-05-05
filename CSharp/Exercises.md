@@ -15,7 +15,13 @@ Create a static class "Utilities" and implement a method which takes two integer
 
 
 ## Exercise University
-Implement a University class containing university's info an a list of its Students. Students have name and mark. Sort the list by students' mark in ascending order. Use the interface `System.IComparer<T>`
+Implement a University class containing university's info, a list of Courses and a list of its Students. Courses have name and ECTS. Students have name and mark. A Student registers to 5 courses.
+1. Add some (>10) courses and some (>10) users hardcoded inside University's constructor.
+1. Create method that registers user to course.
+2. Create method that mark a course as completed and store user's grade.
+3. Create method that calculates user's median grade. Use ECTS as weights.
+*like M = (M1*E1 + M2*E2 + M3*E3) / (E1 + E2 + E3)*
+4. Create method that returns the best and worst student.
 
 
 ## Exercise Zoo
