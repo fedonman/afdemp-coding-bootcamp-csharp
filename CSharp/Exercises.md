@@ -12,9 +12,13 @@ b) Create a class Order which implements a method CalculateCost which takes as i
 
 ## Exercise Utilities
 Create a static class "Utilities" and 
-1. Write a method which takes two integers parameters and swaps them. Use ref. Create a second method which swaps generic types.
-2. Write a  method that finds the longest subsequence of equal numbers in a given List<int> and returns the result as new List<int>. Create a second method which does the same for generic types. Test it with  class Fraction
-3. Write a method that takes as parameters the a, b, c of the quadratic equation *ax^2 + bx + c = 0* and returns the real-valued solutions if they exist.
+1. a) Write a method which takes two integers parameters and swaps them. Use ref. 
+   b)Create a second method which swaps generic types.
+2. a) Write a  method that finds the longest subsequence of equal numbers in a given List<int> and returns the result as new List<int>. 
+   b) Create a second method which does the same for generic types. Test it with  class Fraction
+   c) Implement the same, but as an extension method of class List (search what extension method is!)
+3. a) Write a method that takes as parameters the a, b, c of the quadratic equation *ax^2 + bx + c = 0* and returns the real-valued solutions if they exist.
+   b) Try doing the same with complex solutions using the Complex class.
 
 
 ## Exercise University
@@ -41,12 +45,6 @@ You have the following relations between entities:
 + The User can make request regarding Authors and Book availability only by asking the Librarian. No direct contact to the other entities should be attempted!
 1. Create all the necessary classes as much independent from each other as possible (loose coupling).
 2. The rest of the logic should be in class Program. In main() we want to call a static function `Program.AsksForBook(user, librarian, book)` which prints whether the user can access the book if the book exists in the library.
-
-
-## Exercise *Subsequence*
- Write a program to test whether the method works correctly. Implement the method
-1. as a static method of a static class Utilities
-2. as an extension method of the List<int>
 
 
 ## Exercise *Fraction*
