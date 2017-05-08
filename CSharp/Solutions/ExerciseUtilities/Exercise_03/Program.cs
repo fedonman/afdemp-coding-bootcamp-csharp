@@ -8,32 +8,79 @@ namespace ExerciseUtilities
 {
     class Program
     {
-        public static class Utilities
-        {
-            public static void Swap (ref int a, ref int b)
-            {
-                int temp = a;
-                a = b;
-                b = temp;
-            }
-            public static void Swap<T> (ref T a, ref T b)
-            {
-                T temp = a;
-                a = b;
-                b = temp;
-            }
-        }
+        
         static void Main(string[] args)
         {
+            // 1. a)
             int a = 5;
             int b = 10;
             Utilities.Swap(ref a, ref b);
             Console.WriteLine($"a: {a}, b: {b}");
 
+            // 1. b)
             string x = "xxx";
             string z = "zzz";
             Utilities.Swap(ref x, ref z);
             Console.WriteLine($"x: {x}, z: {z}");
+
+            // 2. a)
+            List<int> listA = new List<int>() { 1, 5, 5, 3, 4, 4, 4, 4, 6, 6, 6, 6 };
+            List<int> resultA = Utilities.Subsequence(listA);
+
+            Console.Write("Subsequence of integers: ");
+            foreach(int i in resultA)
+            {
+                Console.Write(i + ", ");
+            }
+            Console.WriteLine();
+
+            // 2. bonus)
+            List<int> resultA1 = Utilities.SubLINQ(listA);
+            Console.Write("Subsequence of integers using LINQ: ");
+            foreach (int i in resultA1)
+            {
+                Console.Write(i + ", ");
+            }
+            Console.WriteLine();
+
+            // 2. b)
+            List<Fraction> listB = new List<Fraction>()
+            {
+                new Fraction(3, 5),
+                new Fraction(3, 5),
+                new Fraction(3, 5),
+                new Fraction(4, 7),
+                new Fraction(1, 2),
+                new Fraction(1, 2),
+                new Fraction(3, 5),
+                new Fraction(4, 5)
+            };
+            List<Fraction> resultB = Utilities.Subsequence(listB);
+            Console.Write("Subsequence of fractions: ");
+            foreach (Fraction f in resultB)
+            {
+                Console.Write(f + ", ");
+            }
+            Console.WriteLine();
+
+            // 2. c)
+            List<Fraction> resultB1 = listB.GetSubsequence();
+            Console.Write("Subsequence of fractions as extension method: ");
+            foreach (Fraction f in resultB1)
+            {
+                Console.Write(f + ", ");
+            }
+            Console.WriteLine();
+
+            /* dynamic variables */
+            int test1 = Utilities.Test(5);
+            Fraction test2 = Utilities.Test(100);
+            dynamic test3 = Utilities.Test(10);
+            Console.WriteLine(test3 is Fraction);
+
+
+            Console.WriteLine(test1);
+            Console.WriteLine(test2);
 
             Console.ReadKey();
         }
