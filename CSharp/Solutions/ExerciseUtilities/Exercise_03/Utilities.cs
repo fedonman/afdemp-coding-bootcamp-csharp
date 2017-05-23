@@ -132,7 +132,45 @@ namespace ExerciseUtilities
                 .Select(f => f.Value).ToList<int>();
         }
 
-        // Test method just for dynamic
+        // 3. a) + b)
+        // roots are returned as out parameters and are dynamic,
+        // because i don't know if it has real or complex solution beforehand.
+        // I also return the type of the actual solution using built-in class Type
+        public static Type QuadraticSolve(double a, double b, double c, out dynamic root1, out dynamic root2)
+        {
+            if (a == 0)
+            {
+                throw new Exception("Not a quadratic equation");
+            }
+            if (b == 0)
+            {
+                double sqrt = Math.Sqrt(c);
+                root1 = sqrt;
+                root2 = -sqrt;
+                return root1.GetType();
+            }
+            double d = Math.Pow(b, 2) - 4 * a * c;
+            if (d == 0)
+            {
+                root1 = (-b) / (2 * a);
+                root2 = root1;
+                return root1.GetType();
+            }
+            else if (d > 0)
+            {
+                root1 = (-b + Math.Sqrt(d)) / (2 * a);
+                root2 = -root1;
+                return root1.GetType();
+            }
+            else
+            {
+                root1 = (new Complex(-b, 0) + new Complex(0, Math.Sqrt(Math.Abs(d)))) / (new Complex(2, 0) * new Complex(a, 0));
+                root2 = (new Complex(-b, 0) - new Complex(0, Math.Sqrt(Math.Abs(d)))) / (new Complex(2, 0) * new Complex(a, 0));
+                return root1.GetType();
+            }
+        }
+
+        // Test method just to show dynamic keyword
         public static dynamic Test(int a)
         {
             if (a < 10)

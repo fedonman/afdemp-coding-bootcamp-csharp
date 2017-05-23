@@ -82,6 +82,27 @@ namespace ExerciseUtilities
             Console.WriteLine(test1);
             Console.WriteLine(test2);
 
+            dynamic root1;
+            dynamic root2;
+            // real result
+            Type type1 = Utilities.QuadraticSolve(2, 0, 2, out root1, out root2);
+            Console.WriteLine(root1 + "  " + root2 + "  " + type1); 
+
+            // complex result
+            Type type2 = Utilities.QuadraticSolve(2, 2, 2, out root1, out root2);
+            Console.WriteLine(root1 + "  " + root2 + "  " + type2);
+
+            /* Reflection
+            foreach (System.Reflection.MemberInfo f in type2.GetMembers())
+            {
+                Console.WriteLine(f.Name);
+            }
+            */
+
+            // i don't need to store the returned type
+            Utilities.QuadraticSolve(4, 6, 2, out root1, out root2);
+            Console.WriteLine(root1 + "  " + root2);
+
             Console.ReadKey();
         }
     }
