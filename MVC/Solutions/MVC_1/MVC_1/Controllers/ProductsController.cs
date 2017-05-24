@@ -24,5 +24,36 @@ namespace MVC_1.Controllers
             var product = db.Products.Single(x => x.Id == id);
             return View(product);
         }
+
+        // GET /Products/Create
+        public ActionResult Create()
+        {
+            ViewBag.CategoryId = new SelectList(db.Categories.ToList(), "Id", "Name", 0);
+            return View();
+        }
+
+        // POST /Products/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Name,CategoryId")] Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Products.Add(product);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(product);
+        }
+
+      
+        public ActionResult Delete(int id)
+        {
+            Product product = db.Products.Find(id);
+            db.Products.Remove(product);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

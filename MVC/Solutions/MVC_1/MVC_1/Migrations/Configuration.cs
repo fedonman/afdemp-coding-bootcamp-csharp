@@ -28,14 +28,19 @@ namespace MVC_1.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-            context.Products.AddOrUpdate(
+            context.Categories.AddOrUpdate(
                 x => x.Name,
-                new Product { Name = "Product 1", Description="Description of Product 1", Price = 5.4M},
-                new Product { Name = "Product 2", Description = "Description of Product 2", Price = 20M },
-                new Product { Name = "Product 3", Description = "Description of Product 3", Price = 0.6M },
-                new Product { Name = "Product 4", Description = "Description of Product 4", Price = 250.6M }
+                new Category { Name = "Hardware"},
+                new Category { Name = "Software"},
+                new Category { Name = "Services"}
             );
+            //context.Products.AddOrUpdate(
+            //    x => x.Name,
+            //    new Product { Name = "Product 1", Description="Description of Product 1", Price = 5.4M},
+            //    new Product { Name = "Product 2", Description = "Description of Product 2", Price = 20M },
+            //    new Product { Name = "Product 3", Description = "Description of Product 3", Price = 0.6M },
+            //    new Product { Name = "Product 4", Description = "Description of Product 4", Price = 250.6M }
+            //);
             context.SaveChanges();
         }
     }

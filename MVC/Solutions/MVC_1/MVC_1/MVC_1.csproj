@@ -158,7 +158,12 @@
     <Compile Include="Migrations\201705221343105_Init.Designer.cs">
       <DependentUpon>201705221343105_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705241329590_Added Category.cs" />
+    <Compile Include="Migrations\201705241329590_Added Category.Designer.cs">
+      <DependentUpon>201705241329590_Added Category.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\MyModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -202,6 +207,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Detail.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -227,6 +233,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705221343105_Init.resx">
       <DependentUpon>201705221343105_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705241329590_Added Category.resx">
+      <DependentUpon>201705241329590_Added Category.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
