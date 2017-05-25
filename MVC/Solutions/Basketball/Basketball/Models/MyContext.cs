@@ -27,11 +27,10 @@ namespace Basketball.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //one-to-many 
-            modelBuilder.Entity<User>()
-                        .HasOptional<Team>(s => s.Team) // Student entity requires Standard 
-                        .WithMany(s => s.Members)
-                        .HasForeignKey(s => s.TeamName); // Standard entity includes many Students entities
-
+            modelBuilder.Entity<User>() // User entity
+                        .HasOptional<Team>(s => s.Team) // has an optional Team, 
+                        .WithMany(s => s.Members) // Team has many Members(Users),
+                        .HasForeignKey(s => s.TeamName); // and the foreign Key for all these is user.TeamName
         }
 
     }
