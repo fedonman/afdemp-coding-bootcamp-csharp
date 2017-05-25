@@ -153,23 +153,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705250903250_Init.cs" />
-    <Compile Include="Migrations\201705250903250_Init.Designer.cs">
-      <DependentUpon>201705250903250_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705251030290_Second.cs" />
-    <Compile Include="Migrations\201705251030290_Second.Designer.cs">
-      <DependentUpon>201705251030290_Second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705251115207_updates.cs" />
-    <Compile Include="Migrations\201705251115207_updates.Designer.cs">
-      <DependentUpon>201705251115207_updates.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705251117499_new.cs" />
-    <Compile Include="Migrations\201705251117499_new.Designer.cs">
-      <DependentUpon>201705251117499_new.cs</DependentUpon>
+    <Compile Include="Migrations\201705251421390_init.cs" />
+    <Compile Include="Migrations\201705251421390_init.Designer.cs">
+      <DependentUpon>201705251421390_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\JoinRequest.cs" />
     <Compile Include="Models\MyContext.cs" />
     <Compile Include="Models\Team.cs" />
@@ -235,17 +224,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705250903250_Init.resx">
-      <DependentUpon>201705250903250_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705251030290_Second.resx">
-      <DependentUpon>201705251030290_Second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705251115207_updates.resx">
-      <DependentUpon>201705251115207_updates.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705251117499_new.resx">
-      <DependentUpon>201705251117499_new.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705251421390_init.resx">
+      <DependentUpon>201705251421390_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

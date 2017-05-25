@@ -21,7 +21,6 @@ namespace Basketball.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [ForeignKey("Team")]
         public string TeamName { get; set; }
         public Team Team { get; set; }
     }

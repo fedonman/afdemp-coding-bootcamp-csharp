@@ -9,6 +9,10 @@ namespace Basketball.Models
 {
     public class Team
     {
+        public Team()
+        {
+            Members = new List<User>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Name { get; set; }

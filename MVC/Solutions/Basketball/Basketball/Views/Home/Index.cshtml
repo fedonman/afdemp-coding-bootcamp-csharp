@@ -1,1 +1,24 @@
-﻿
+﻿@model Basketball.Models.IndexViewModel
+
+<h4>List of teams</h4>
+<ul>
+    @foreach (var team in Model.Teams)
+    {
+        <li>
+            @Html.DisplayFor(x => team.Name)
+            <p>Members</p>
+            <ul>
+                @foreach (var member in team.Members)
+                {
+                    <li>
+                        @Html.DisplayFor(x => member.Name)
+                    </li>
+                }
+            </ul>
+            @if (Model.User.Team == null)
+            {
+                @Html.ActionLink("Request to join", "JoinRequest", new { email = Model.User.Email, team = team.Name}, null)
+            }
+        </li>
+    }
+</ul>

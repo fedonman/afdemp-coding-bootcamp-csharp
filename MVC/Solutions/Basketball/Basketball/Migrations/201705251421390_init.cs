@@ -3,10 +3,24 @@ namespace Basketball.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.JoinRequests",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserName = c.String(maxLength: 128),
+                        TeamName = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Teams", t => t.TeamName)
+                .ForeignKey("dbo.Users", t => t.UserName)
+                .Index(t => t.UserName)
+                .Index(t => t.TeamName);
+            
             CreateTable(
                 "dbo.Teams",
                 c => new
@@ -23,29 +37,29 @@ namespace Basketball.Migrations
                 c => new
                     {
                         Email = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(),
-                        Password = c.String(),
+                        Name = c.String(nullable: false),
+                        Password = c.String(nullable: false),
                         TeamName = c.String(maxLength: 128),
-                        Team_Name = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Email)
                 .ForeignKey("dbo.Teams", t => t.TeamName)
-                .ForeignKey("dbo.Teams", t => t.Team_Name)
-                .Index(t => t.TeamName)
-                .Index(t => t.Team_Name);
+                .Index(t => t.TeamName);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Users", "Team_Name", "dbo.Teams");
+            DropForeignKey("dbo.JoinRequests", "UserName", "dbo.Users");
+            DropForeignKey("dbo.JoinRequests", "TeamName", "dbo.Teams");
             DropForeignKey("dbo.Teams", "CreatorEmail", "dbo.Users");
             DropForeignKey("dbo.Users", "TeamName", "dbo.Teams");
-            DropIndex("dbo.Users", new[] { "Team_Name" });
             DropIndex("dbo.Users", new[] { "TeamName" });
             DropIndex("dbo.Teams", new[] { "CreatorEmail" });
+            DropIndex("dbo.JoinRequests", new[] { "TeamName" });
+            DropIndex("dbo.JoinRequests", new[] { "UserName" });
             DropTable("dbo.Users");
             DropTable("dbo.Teams");
+            DropTable("dbo.JoinRequests");
         }
     }
 }

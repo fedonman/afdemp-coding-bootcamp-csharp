@@ -23,6 +23,17 @@ namespace Basketball.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<JoinRequest> JoinRequests { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //one-to-many 
+            modelBuilder.Entity<User>()
+                        .HasOptional<Team>(s => s.Team) // Student entity requires Standard 
+                        .WithMany(s => s.Members)
+                        .HasForeignKey(s => s.TeamName); // Standard entity includes many Students entities
+
+        }
+
     }
 
     //public class MyEntity
