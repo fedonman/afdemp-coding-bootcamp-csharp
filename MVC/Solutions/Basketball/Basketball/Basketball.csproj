@@ -158,11 +158,13 @@
       <DependentUpon>201705251421390_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\JoinRequest.cs" />
     <Compile Include="Models\MyContext.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\ViewRequestsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

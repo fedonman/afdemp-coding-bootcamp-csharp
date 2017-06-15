@@ -1,24 +1,26 @@
 ﻿@model Basketball.Models.IndexViewModel
 
 <h4>List of teams</h4>
-<ul>
+<section class="teams-container">
     @foreach (var team in Model.Teams)
     {
-        <li>
-            @Html.DisplayFor(x => team.Name)
-            <p>Members</p>
-            <ul>
-                @foreach (var member in team.Members)
-                {
-                    <li>
-                        @Html.DisplayFor(x => member.Name)
-                    </li>
-                }
-            </ul>
+        <div>
+            <h5>@Html.DisplayFor(x => team.Name)</h5>
+            <h6>Members</h6>
+            <div class="teams-members-list">
+                    @foreach (var member in team.Members)
+                    {
+                        <div class="teams-members-item">
+                            <p>
+                                @Html.DisplayFor(x => member.Name)
+                            </p>
+                        </div>
+                    }
+            </div>
             @if (Model.User.Team == null)
             {
-                @Html.ActionLink("Request to join", "JoinRequest", new { email = Model.User.Email, team = team.Name}, null)
+                @Html.ActionLink("Request to join", "JoinRequest", new { userEmail = Model.User.Email, teamName = team.Name}, null)
             }
-        </li>
+        </div>
     }
-</ul>
+</section>

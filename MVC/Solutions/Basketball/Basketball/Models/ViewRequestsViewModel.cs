@@ -5,8 +5,8 @@ using System.Web;
 
 namespace Basketball.Models
 {
-    public class IndexViewModel : BaseViewModel
+    public class ViewRequestsViewModel : BaseViewModel
     {
-        public List<Team> Teams { get; set; }
+        public List<JoinRequest> Requests { get; set; }
     }
 }

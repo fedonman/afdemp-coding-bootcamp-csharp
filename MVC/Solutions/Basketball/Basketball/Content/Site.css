@@ -22,3 +22,14 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*CUSTOM CODE*/
+.teams-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.teams-members-list {
+    display: flex;
+    align-content: flex-start;
+}

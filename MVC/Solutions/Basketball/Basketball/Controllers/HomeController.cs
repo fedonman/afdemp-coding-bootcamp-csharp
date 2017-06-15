@@ -118,14 +118,32 @@ namespace Basketball.Controllers
             }
         }
 
-        public ActionResult JoinRequest()
+        public ActionResult JoinRequest(string userEmail, string teamName)
         {
-            return View();
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+            if ((string)Session["Email"] != userEmail)
+            {
+                return RedirectToAction("Index");
+            }
+            JoinRequest request = new JoinRequest { UserName = userEmail, TeamName = teamName };
+            db.JoinRequests.Add(request);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult ViewRequests()
         {
-            return View();
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+            ViewRequestsViewModel viewModel = new ViewRequestsViewModel();
+            viewModel.User = db.Users.Find((string)Session["Email"]);
+            viewModel.Requests = db.JoinRequests.Where(x => x.Team.CreatorEmail == user.Email).ToList();
+            return View(viewModel);
         }
     }
 }
