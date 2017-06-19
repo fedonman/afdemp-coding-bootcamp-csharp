@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Todos";
+}
+
+<div id="tasks"></div>
+
+@section scripts{
+    <script>
+        window.onload = _ => {
+            const baseurl = 'http://localhost:50060/';
+
+            fetch(baseurl + 'api/tasks/' + 'fedonman@gmail.com/')
+                .then(response => response.json())
+                .then(json => console.log(json));
+        }
+    </script>
+}
