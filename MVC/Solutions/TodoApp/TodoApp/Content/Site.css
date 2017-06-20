@@ -1,6 +1,28 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿/* CSS RESET*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* OUR STYLING */
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: stretch;
+    min-height: 100vh;
 }
 
 /* Set padding to keep content from hitting the edges */

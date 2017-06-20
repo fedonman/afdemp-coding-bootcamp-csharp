@@ -2,16 +2,66 @@
     ViewBag.Title = "Todos";
 }
 
-<div id="tasks"></div>
+<section id="tasks-section">
+    <header>
+        <h1>Todos</h1>
+        <input autofocus class="new-todo" placeholder="What needs to be done?" />
+    </header>
+    <div id="tasks-div">
+        <ul id="tasks-list">
+            
+        </ul>
+    </div>
+</section>
 
 @section scripts{
     <script>
         window.onload = _ => {
             const baseurl = 'http://localhost:50060/';
+            const getTasksPath = 'api/tasks/get/';
+            const completeTaskPath = 'api/tasks/complete/';
+            const createTaskPath = 'api/tasks/create/'
 
-            fetch(baseurl + 'api/tasks/' + 'fedonman@gmail.com/')
-                .then(response => response.json())
-                .then(json => console.log(json));
+            let tasks = [];
+            let tasksListElement = document.querySelector('#tasks-list');
+
+            renderTasksListUI = _ => {
+                tasksListElement.innerHTML = '';
+                tasks.forEach(x => {
+                    tasksListElement.innerHTML +=
+                        `
+                        <li>
+                            <div id="task-${x.Id}" class="task-item">
+                                <input type="checkbox" name="${x.Id}" ${x.IsCompleted ? 'checked' : ''} onchange="taskChangedEvent(${x.Id})"></input>
+                                <label>${x.Title}</label>
+                            </div>
+                        </li>`;
+                });
+            }
+
+            taskChangedEvent = id => {
+                /* update App Model on FrontEnd (App State) */
+                let index = tasks.findIndex(x => x.Id == id);
+                tasks[index].IsCompleted = !tasks[index].IsCompleted;
+                /* update App Model on Server */
+                let req = new Request(baseurl + completeTaskPath + id, {
+                    method: 'PUT'
+                });
+                fetch(req).then(response => response.json()).then(json => console.log(json));
+            }
+
+            initializeTasks = _ => {
+                let req = new Request(baseurl + getTasksPath + 'fedonman@gmail.com/');
+                fetch(req)
+                    .then(response => response.json())
+                    .then(json => {
+                        console.log(json);
+                        tasks = json;
+                        renderTasksListUI();
+                    });
+            }
+
+            initializeTasks();
         }
     </script>
 }

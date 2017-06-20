@@ -87,5 +87,14 @@ namespace TodoApp.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

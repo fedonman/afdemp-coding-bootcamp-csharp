@@ -12,70 +12,42 @@ using TodoApp.Models;
 
 namespace TodoApp.Controllers
 {
-    [RoutePrefix("api")]
+    [RoutePrefix("api/tasks")]
     public class TasksController : ApiController
     {
         private MyContext db = new MyContext();
 
         // GET: api/Tasks/email@email.com
-        [Route("tasks/{email}/")]
+        [Route("get/{email}/")]
         [HttpGet]
-        public IQueryable<Task> FindTasksOfUser(string email)
+        public IHttpActionResult GetTasksOfUser(string email)
         {
-            return db.Tasks.Where(x => x.User.Email == email);
+            
+            List<Task> tasks = db.Tasks.Where(x => x.User.Email == email).ToList();
+            return Ok(tasks);
         }
 
-        // GET: api/Tasks/5
-        [ResponseType(typeof(Task))]
-        public IHttpActionResult GetTask(int id)
+        // PUT: api/Tasks/5
+        [Route("complete/{id}/")]
+        [HttpPut]
+        public IHttpActionResult ToggleTask(int id)
         {
             Task task = db.Tasks.Find(id);
             if (task == null)
             {
                 return NotFound();
             }
-
-            return Ok(task);
-        }
-
-        // PUT: api/Tasks/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutTask(int id, Task task)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != task.Id)
-            {
-                return BadRequest();
-            }
-
+            task.IsCompleted = !task.IsCompleted;
             db.Entry(task).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TaskExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            db.SaveChanges();
             return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Tasks
         [ResponseType(typeof(Task))]
-        public IHttpActionResult PostTask(Task task)
+        [Route("create/{id}/")]
+        [HttpPost]
+        public IHttpActionResult CreateTask(Task task)
         {
             if (!ModelState.IsValid)
             {
@@ -85,23 +57,7 @@ namespace TodoApp.Controllers
             db.Tasks.Add(task);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = task.Id }, task);
-        }
-
-        // DELETE: api/Tasks/5
-        [ResponseType(typeof(Task))]
-        public IHttpActionResult DeleteTask(int id)
-        {
-            Task task = db.Tasks.Find(id);
-            if (task == null)
-            {
-                return NotFound();
-            }
-
-            db.Tasks.Remove(task);
-            db.SaveChanges();
-
-            return Ok(task);
+            return CreatedAtRoute("Tasks", new { id = task.Id }, task);
         }
 
         protected override void Dispose(bool disposing)
