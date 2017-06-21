@@ -169,6 +169,10 @@
     <Compile Include="Migrations\201706191041416_init.Designer.cs">
       <DependentUpon>201706191041416_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706211226253_removed-description.cs" />
+    <Compile Include="Migrations\201706211226253_removed-description.Designer.cs">
+      <DependentUpon>201706211226253_removed-description.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MyContext.cs" />
     <Compile Include="Models\Task.cs" />
@@ -184,7 +188,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -203,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -211,6 +215,12 @@
     <EmbeddedResource Include="Migrations\201706191041416_init.resx">
       <DependentUpon>201706191041416_init.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706211226253_removed-description.resx">
+      <DependentUpon>201706211226253_removed-description.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\TodoApp20170621041438 - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -17,7 +17,8 @@ namespace TodoApp.Controllers
     public class TasksController : ApiController
     {
         private MyContext db = new MyContext();
-        // GET: api/Tasks/email@email.com
+        
+        // GET: api/tasks/get/email@email.com
         [Route("get/{email}/")]
         [HttpGet]
         public IHttpActionResult GetTasksOfUser(string email)
@@ -26,9 +27,9 @@ namespace TodoApp.Controllers
             return Ok(tasks);
         }
 
-        // PUT: api/Tasks/5
+        // POST: api/tasks/complete/5
         [Route("complete/{id}/")]
-        [HttpPut]
+        [HttpPost]
         public IHttpActionResult ToggleTask(int id)
         {
             Task task = db.Tasks.Find(id);
@@ -42,14 +43,27 @@ namespace TodoApp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Tasks
+        // POST: api/tasks/delete/5
+        [Route("delete/{id}/")]
+        [HttpPost]
+        public IHttpActionResult DeleteTask(int id)
+        {
+            Task task = db.Tasks.Find(id);
+            if (task == null)
+            {
+                return NotFound();
+            }
+            db.Entry(task).State = EntityState.Deleted;
+            db.SaveChanges();
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/tasks/create/?Title=read source code&UserEmail=fedonman@gmail.com&IsCompleted=false
         [ResponseType(typeof(Task))]
         [Route("create/")]
         [HttpPost]
         public IHttpActionResult CreateTask([FromUri] Task task)
         {
-            Console.WriteLine(task);
-
             db.Tasks.Add(task);
             db.SaveChanges();
 

@@ -18,6 +18,8 @@ namespace TodoApp.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            ViewBag.BaseUrl = Request.Url.GetLeftPart(UriPartial.Authority) + Url.Content("~");
+            ViewBag.UserEmail = Session["UserEmail"];
             return View();
         }
 
@@ -41,6 +43,7 @@ namespace TodoApp.Controllers
             if (Crypto.VerifyHashedPassword(u.HashedPasswordAndSalt, String.Concat(loginViewModel.Password, u.Salt)))
             {
                 FormsAuthentication.SetAuthCookie(u.Email, false);
+                Session["UserEmail"] = u.Email;
                 return RedirectToAction("Index");
             }
             else
@@ -84,22 +87,9 @@ namespace TodoApp.Controllers
         [Authorize]
         public ActionResult Logout()
         {
+            Session.Remove("UserEmail");
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
-        }
-
-        /* THIS SHOULD NOT BE HERE
-         * IT IS JUST AN UGLY HACK
-         * BECAUSE MVC and WEB API
-         * USE DIFFERENT AUTHENTICATION
-         * AND IT IS NOT THE PURPOSE OF
-         * THIS EXAMPLE
-         * */
-        [Authorize]
-        [HttpPost]
-        public JsonResult GetUserEmail()
-        {
-            return Json(User.Identity.Name);
         }
 
         protected override void Dispose(bool disposing)
