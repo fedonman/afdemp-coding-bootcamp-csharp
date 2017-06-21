@@ -5,7 +5,7 @@
 <section id="tasks-section">
     <header>
         <h1>Todos</h1>
-        <input autofocus class="new-todo" placeholder="What needs to be done?" />
+        <input autofocus id="new-task" placeholder="What needs to be done?" onkeydown="addTask()"/>
     </header>
     <div id="tasks-div">
         <ul id="tasks-list">
@@ -17,51 +17,93 @@
 @section scripts{
     <script>
         window.onload = _ => {
+            /* constant urls to server */
             const baseurl = 'http://localhost:50060/';
+            const getUserEmailPath = 'Home/GetUserEmail/';
             const getTasksPath = 'api/tasks/get/';
             const completeTaskPath = 'api/tasks/complete/';
-            const createTaskPath = 'api/tasks/create/'
+            const addTaskPath = 'api/tasks/create/'
 
+            /* Front-end Model (App state) */
+            let userEmail = '';
             let tasks = [];
+
+            /* HTMLElements (App View) */
+            let addTaskInputElement = document.querySelector('#new-task');
             let tasksListElement = document.querySelector('#tasks-list');
+
+            getTaskItemHTML = (id, title, isCompleted) => {
+                return `<li>
+                            <div id="task-${id}" class="task-item">
+                                <input type="checkbox" name="${id}" ${isCompleted ? 'checked' : ''} onchange="taskChangedEvent(${id})"></input>
+                                <label>${title}</label>
+                            </div>
+                        </li>`;
+            }
 
             renderTasksListUI = _ => {
                 tasksListElement.innerHTML = '';
-                tasks.forEach(x => {
-                    tasksListElement.innerHTML +=
-                        `
-                        <li>
-                            <div id="task-${x.Id}" class="task-item">
-                                <input type="checkbox" name="${x.Id}" ${x.IsCompleted ? 'checked' : ''} onchange="taskChangedEvent(${x.Id})"></input>
-                                <label>${x.Title}</label>
-                            </div>
-                        </li>`;
-                });
+                tasks.forEach(x => tasksListElement.innerHTML += getTaskItemHTML(x.Id, x.Title, x.IsCompleted));
             }
 
             taskChangedEvent = id => {
-                /* update App Model on FrontEnd (App State) */
+                /* update Frontend Model (App State) */
                 let index = tasks.findIndex(x => x.Id == id);
                 tasks[index].IsCompleted = !tasks[index].IsCompleted;
-                /* update App Model on Server */
+                /* update Backend Model (Database) */
                 let req = new Request(baseurl + completeTaskPath + id, {
                     method: 'PUT'
                 });
-                fetch(req).then(response => response.json()).then(json => console.log(json));
+                fetch(req)
+                    .then(response => console.log(response));
+            }
+
+            addTask = _ => {
+                /* update Backend Model (Database) */
+                if (event.keyCode === 13 && addTaskInputElement.value.length > 0) {
+                    let task = {
+                        Title: addTaskInputElement.value,
+                        IsCompleted: false
+                    };
+
+                    let req = new Request(baseurl + addTaskPath + '?Title=' + task.Title + '&UserEmail=' + userEmail + '&IsCompleted=' + task.IsCompleted, {
+                        method: 'POST'
+                    });
+                    fetch(req)
+                        .then(response => response.json())
+                        .then(json => task.Id = json)
+                        .then(tasks.push(task))
+                        .then(tasksListElement.innerHTML += getTaskItemHTML(task.Id, task.Title, task.IsCompleted))
+                        .then(_ => addTaskInputElement.value = '');
+                }
+            }
+
+            getUserEmail = _ => {
+                return new Promise((resolve, reject) => {
+                    let req = new Request(baseurl + getUserEmailPath, {
+                        method: 'POST',
+                        credentials: 'include'
+                    });
+                    fetch(req)
+                        .then(response => response.json())
+                        .then(json => userEmail = json)
+                        .then(_ => resolve(true));
+                });
             }
 
             initializeTasks = _ => {
-                let req = new Request(baseurl + getTasksPath + 'fedonman@gmail.com/');
+                let req = new Request(baseurl + getTasksPath + userEmail + '/', {
+                    method: 'GET'
+                });
+                
                 fetch(req)
                     .then(response => response.json())
-                    .then(json => {
-                        console.log(json);
-                        tasks = json;
-                        renderTasksListUI();
-                    });
+                    .then(json => tasks = json)
+                    .then(_ => renderTasksListUI());
             }
 
-            initializeTasks();
+            getUserEmail()
+                .then(_ => initializeTasks());
         }
     </script>
 }

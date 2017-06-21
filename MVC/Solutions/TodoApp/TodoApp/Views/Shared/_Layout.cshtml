@@ -5,18 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Todo App</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <header class="navbar">
-        <div classs="app-title">
-            <h1>Todo App</h1>
-        </div>
-        <div class="menu">
-            <ul>
-                <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
-            </ul>
-        </div>
+        <h1>Todo App</h1>
+        <ul>
+            <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+        </ul>
     </header>
     <main class="container body-content">
         @RenderBody()

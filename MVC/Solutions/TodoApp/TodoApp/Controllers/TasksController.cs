@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Security;
 using TodoApp.Models;
 
 namespace TodoApp.Controllers
@@ -16,14 +17,12 @@ namespace TodoApp.Controllers
     public class TasksController : ApiController
     {
         private MyContext db = new MyContext();
-
         // GET: api/Tasks/email@email.com
         [Route("get/{email}/")]
         [HttpGet]
         public IHttpActionResult GetTasksOfUser(string email)
         {
-            
-            List<Task> tasks = db.Tasks.Where(x => x.User.Email == email).ToList();
+            var tasks = db.Tasks.Where(x => x.User.Email == email).Select(x => new { Id = x.Id, Title = x.Title, IsCompleted = x.IsCompleted }).ToList();
             return Ok(tasks);
         }
 
@@ -45,19 +44,16 @@ namespace TodoApp.Controllers
 
         // POST: api/Tasks
         [ResponseType(typeof(Task))]
-        [Route("create/{id}/")]
+        [Route("create/")]
         [HttpPost]
-        public IHttpActionResult CreateTask(Task task)
+        public IHttpActionResult CreateTask([FromUri] Task task)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            Console.WriteLine(task);
 
             db.Tasks.Add(task);
             db.SaveChanges();
 
-            return CreatedAtRoute("Tasks", new { id = task.Id }, task);
+            return Ok(task.Id);
         }
 
         protected override void Dispose(bool disposing)

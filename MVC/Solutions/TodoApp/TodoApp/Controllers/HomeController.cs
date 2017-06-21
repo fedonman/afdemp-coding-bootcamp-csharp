@@ -88,6 +88,20 @@ namespace TodoApp.Controllers
             return RedirectToAction("Login");
         }
 
+        /* THIS SHOULD NOT BE HERE
+         * IT IS JUST AN UGLY HACK
+         * BECAUSE MVC and WEB API
+         * USE DIFFERENT AUTHENTICATION
+         * AND IT IS NOT THE PURPOSE OF
+         * THIS EXAMPLE
+         * */
+        [Authorize]
+        [HttpPost]
+        public JsonResult GetUserEmail()
+        {
+            return Json(User.Identity.Name);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
