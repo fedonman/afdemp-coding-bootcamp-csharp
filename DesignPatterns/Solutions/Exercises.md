@@ -1,4 +1,4 @@
-.# Design Patterns
+# Design Patterns
 
 ## Exercise 1
 ### Observer Pattern
