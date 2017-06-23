@@ -12,7 +12,7 @@ namespace Exercise2
         {
             SourceCodeAnalyzerFacade facade = new SourceCodeAnalyzerFacade();
             facade.AnalyzeSourceCode("SourceCodeAnalyzer.cs", "StringMethodResults.txt", AnalyzerMethod.String);
-            facade.AnalyzeSourceCode("SourceCodeAnalyzer.cs", "RegexMethodResults.txt", AnalyzerMethod.String);
+            facade.AnalyzeSourceCode("SourceCodeAnalyzer.cs", "RegexMethodResults.txt", AnalyzerMethod.Regex);
         }
     }
 }

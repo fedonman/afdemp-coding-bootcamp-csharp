@@ -21,7 +21,7 @@ namespace Exercise2
         {
             int counter = 0;
             SourceCode.Split('\n').ToList().ForEach(delegate (string line) {
-                if (line.Contains("class"))
+                if (line.Contains(" class "))
                 {
                     counter++;
                 }
@@ -33,13 +33,13 @@ namespace Exercise2
         {
             int counter = 0;
             bool flag = false;
-            SourceCode.Split('\n').ToList().ForEach(delegate (string line)
+            SourceCode.Replace(" ","").Replace("\t", "").Split('\n').ToList().ForEach(delegate (string line)
             {
                 if (flag && line.Contains("{")) {
                     counter++;
                     flag = false;
                 }
-                if (line.Contains("(") && line.Contains(")") && !line.Contains("if") && !line.Contains("for") && !line.Contains("switch") && !line.Contains(".")) {
+                if (line.Contains("(") && line.Contains(")") && !line.Contains("if") && !line.Contains("for") && !line.Contains("switch") && !line.Contains("while") && !line.Contains(".")) {
                     if (line.Contains("{"))
                     {
                         counter++;
