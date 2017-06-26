@@ -25,7 +25,7 @@ namespace Exercise2
 
         public override int CalculateNumberOfMethods()
         {
-            return Metrics.NumberOfMethods = Regex.Matches(SourceCode, @"\([\s\w]*\)\s*({\s*\n|\n\s*{)").Count;
+            return Metrics.NumberOfMethods = Regex.Matches(Regex.Replace(SourceCode, @"[\s\n]+", ""), @"\(\w*\){").Count;
         }
     }
 }

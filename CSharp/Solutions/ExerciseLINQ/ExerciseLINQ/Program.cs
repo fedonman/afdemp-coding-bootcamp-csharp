@@ -8,7 +8,24 @@ namespace ExerciseLINQ
 {
 	class Program
 	{
-		class Student
+        interface inter
+        {
+            int Age { get; set; }
+        }
+
+        class MyClass : inter
+        {
+            string Source { get; set; }
+            public int aclass { get; set; }
+            public int Age { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+            public MyClass()
+            {
+
+            }
+        }
+
+        class Student
 		{
 			public string Name { get; private set; }
 			public int Age { get; private set; }
@@ -129,7 +146,10 @@ namespace ExerciseLINQ
 				new Student("Ino", 30)
 			});
 
-			EMP.AddTeacher(new Teacher[]
+            EMP.AddStudent(new Student("Nick", 30), new Student("Mike", 20));
+            EMP.AddStudent(new Student("Tom", 30));
+
+            EMP.AddTeacher(new Teacher[]
 			{
 				new Teacher("Kalogeropoulos", 52),
 				new Teacher("Papaioannou", 49),
@@ -164,7 +184,7 @@ namespace ExerciseLINQ
 			bool a = list.All(x => x > 0);
 			Console.WriteLine(a);
 
-			//Is any element of list greater than zero? Prints false			
+			//Is any element of list greater than zero? Prints true			
 			bool b = list.Any(x => x > 0);
 			Console.WriteLine(b);
 
