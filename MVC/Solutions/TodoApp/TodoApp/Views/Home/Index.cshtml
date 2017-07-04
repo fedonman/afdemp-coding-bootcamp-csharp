@@ -19,10 +19,10 @@
         window.onload = _ => {
             /* constant urls to server */
             const baseurl = '@ViewBag.BaseUrl';
-            const getTasksPath = 'api/tasks/get/';
-            const completeTaskPath = 'api/tasks/complete/';
-            const addTaskPath = 'api/tasks/create/';
-            const deleteTaskPath = 'api/tasks/delete/';
+            const getTasksPath = 'Home/GetTasks/';
+            const completeTaskPath = 'home/api/tasks/toggle/';
+            const addTaskPath = 'home/api/tasks/create/';
+            const deleteTaskPath = 'home/api/tasks/delete/';
 
             /* Front-end Model (App state) */
             let userEmail = '@ViewBag.UserEmail';

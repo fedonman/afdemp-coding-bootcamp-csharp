@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Helpers;
 using System.Web.Security;
 
+using System.Data.Entity;
 using TodoApp.Models;
 using TodoApp.ViewModels;
 
@@ -90,6 +91,54 @@ namespace TodoApp.Controllers
             Session.Remove("UserEmail");
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult GetTasks(string email)
+        {
+            var tasks = db.Tasks.Where(x => x.User.Email == email).Select(x => new { Id = x.Id, Title = x.Title, IsCompleted = x.IsCompleted }).ToList();
+            return Json(tasks, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ToggleTask(int id)
+        {
+            Task task = db.Tasks.Find(id);
+            if (task == null)
+            {
+                return new HttpStatusCodeResult(404, "Task not found");
+            }
+            task.IsCompleted = !task.IsCompleted;
+            db.Entry(task).State = EntityState.Modified;
+            db.SaveChanges();
+            return new HttpStatusCodeResult(204, "Task status toggled sucessfully.");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult DeleteTask(int id)
+        {
+            Task task = db.Tasks.Find(id);
+            if (task == null)
+            {
+                return new HttpStatusCodeResult(404, "Task not found.");
+            }
+            db.Entry(task).State = EntityState.Deleted;
+            db.SaveChanges();
+            return new HttpStatusCodeResult(204, "Task deleted successfully.");
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("api/tasks/create")]
+        public ActionResult CreateTask(Task task)
+        {
+            db.Tasks.Add(task);
+            db.SaveChanges();
+
+            return Json(task.Id);
         }
 
         protected override void Dispose(bool disposing)
