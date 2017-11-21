@@ -2,7 +2,11 @@
 
 
 ## Exercise Complex
-Model the complex number as a class in C#. Create constructors for different input parameters. Implement common operations such as addition and subtraction as methods of the class and as overloaded operators. Finally, override ToString() method for informative output.
+1. Model the complex number as a class in C#. 
+2. Create constructors for different input parameters, as well as copy constructors.
+3. Implement common operations such as addition and subtraction as methods of the class 
+4. Implement the same operations as overloaded operators. 
+5. Override ToString() method for informative output.
 
 
 ## Exercise Coffee
@@ -55,7 +59,7 @@ You have the following relations between entities:
 5. Define a static method Parse(string str) to create a Fraction from a string.
 6. Define a property of type *decimal* to return the decimal value of the fraction (e.g. 0.25).  
 7. Implement IComparable interface to enable sorting of Fractions.  
-8. Write a function Cancel() to cancel the Fraction. (e.g. 10/15 is cancelled to 2/3).  
+8. Write a function Cancel() to cancel the Fraction. (e.g. 10/15 is cancelled to 2/3).
 
 
 ## Exercise *Mobile*
