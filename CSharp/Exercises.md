@@ -19,9 +19,9 @@ Create a static class "Utilities" and
 1. a) Write a method which takes two integers parameters and swaps them. Use ref. 
    b)Create a second method which swaps generic types.
 2. a) Write a  method that finds the longest subsequence of equal numbers in a given List<int> and returns the result as new List<int>. 
-   b) Create a second method which does the same for generic types. Test it with  class Fraction
+   b) Create a second method which does the same for generic types. Test it with  class Fraction 
    c) Implement the same, but as an extension method of class List (search what extension method is!)
-3. a) Write a method that takes as parameters the a, b, c of the quadratic equation *ax^2 + bx + c = 0* and returns the real-valued solutions if they exist.
+3. a) Write a method that takes as parameters the a, b, c of the quadratic equation *ax^2 + bx + c = 0* and returns the real-valued solutions if they exist. 
    b) Try doing the same with complex solutions using the Complex class.
 
 
